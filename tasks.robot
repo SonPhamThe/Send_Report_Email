@@ -29,6 +29,9 @@ ${color_product}                ${EMPTY}
 ${size_product}                 ${EMPTY}
 ${url_product}                  ${EMPTY}
 
+${EXCEL_FILE_NAME}    data_magento.xlsx
+${DIRECTORY_PATH}    ${CURDIR}
+
 ${MAGENTO_URL}                  https://magento.softwaretestingboard.com/
 
 # Men's Category IDs
@@ -313,6 +316,10 @@ Go To Cart And Make A Payment
         END
         Save Workbook
     END
+
+    ${file_path}=    Catenate    SEPARATOR=    ${DIRECTORY_PATH}    /    ${EXCEL_FILE_NAME}
+    Log    The path of the Excel file is: ${file_path}
+    Set Out Arg    file_output    ${file_path}
 
 Test
     [Arguments]    ${locator_button_1}    ${locator_button_2}

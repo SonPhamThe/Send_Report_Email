@@ -1,0 +1,59 @@
+{
+    "category": {
+          "name": "category", 
+          "description": "category ", 
+          "type": "String",
+          "direction": "IN",
+          "value": "Women",
+          "required": true
+    },
+    "wearables": {
+          "name": "wearables",
+          "description": "wearables",
+          "type": "String",
+          "direction": "IN",
+          "value": "Bottoms", 
+          "required": true
+    },
+    "product_type": {
+        "name": "product_type",
+        "description": "product_type",
+        "type": "String",
+        "direction": "IN",
+        "value": "Pants", 
+        "required": true
+    },
+    "color": {
+        "name": "color",
+        "description": "color",
+        "type": "String",
+        "direction": "IN",
+        "value": "Black", 
+        "required": true
+    },
+    "size": {
+        "name": "size",
+        "description": "size",
+        "type": "String",
+        "direction": "IN",
+        "value": "XL", 
+        "required": true
+    },
+    "below_price": {
+        "name": "below_price",
+        "description": "below_price",
+        "type": "String",
+        "direction": "IN",
+        "value": "18000", 
+        "required": true
+    },
+    "above_price": {
+        "name": "above_price",
+        "description": "above_price",
+        "type": "String",
+        "direction": "IN",
+        "value": "400000", 
+        "required": true
+    }
+ }
+  

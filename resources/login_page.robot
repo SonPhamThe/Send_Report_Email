@@ -1,22 +1,34 @@
 *** Settings ***
 Library     RPA.Browser.Selenium
+Library     RPA.Desktop
 
 
 *** Keywords ***
-Open Browser And Maximize Window
-    [Arguments]    ${URL_BROWSER}
-    Open Available Browser    ${URL_BROWSER}
-    Maximize Browser Window
-
 Login With Credentials
-    [Arguments]    ${id_input_username}    ${username}    ${id_input_password}    ${password}    ${element_page}
-    Wait Until Element Is Visible    id=${id_input_username}    10s
-    Input Text    ${id_input_username}    ${username}
-    Wait Until Element Is Visible    id=${id_input_password}    10s
-    Input Password    ${id_input_password}    ${password}
-    Click Button When Visible    css=button.action.login.primary
+    [Arguments]    ${username}    ${password}    ${element_page}
+
+   ${emailVisible}=    Run Keyword And Return Status    Wait Until Element Is Visible    id=email    10s
+    Run Keyword If    not ${emailVisible}    Log And Exit    Id email input not found
+    Input Text    id=email    ${username}
+    
+    ${passVisible}=    Run Keyword And Return Status    Wait Until Element Is Visible    id=pass    10s
+    Run Keyword If    not ${passVisible}    Log And Exit    Id password input not found
+    Input Password    id=pass    ${password}
+    Click Button When Visible    id:send2
+    ${login_success}=    Run Keyword And Return Status    Assert Logged In    ${element_page}
+    Run Keyword Unless    ${login_success}    Handle Login Failure
     Assert Logged In    ${element_page}
+
+Handle Login Failure
+    Log    Login failed, please check your credentials and try again.    level=ERROR
+    Fail    Stopping execution due to login failure.
 
 Assert Logged In
     [Arguments]    ${element_page}
-    Wait Until Element Is Visible    ${element_page}
+    Wait Until Element Is Visible    ${element_page}    timeout=10s
+
+Log And Exit
+    [Arguments]    ${message}
+    Log    ${message}    level=ERROR
+    Return From Keyword
+    

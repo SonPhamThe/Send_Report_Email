@@ -4,7 +4,7 @@
           "description": "category ", 
           "type": "String",
           "direction": "IN",
-          "value": "Women",
+          "value": "Men",
           "required": true
     },
     "wearables": {
@@ -12,7 +12,7 @@
           "description": "wearables",
           "type": "String",
           "direction": "IN",
-          "value": "Bottoms", 
+          "value": "Tops", 
           "required": true
     },
     "product_type": {
@@ -20,7 +20,7 @@
         "description": "product_type",
         "type": "String",
         "direction": "IN",
-        "value": "Pants", 
+        "value": "Jackets", 
         "required": true
     },
     "color": {
@@ -28,7 +28,7 @@
         "description": "color",
         "type": "String",
         "direction": "IN",
-        "value": "Black", 
+        "value": "Blue", 
         "required": true
     },
     "size": {
@@ -36,24 +36,40 @@
         "description": "size",
         "type": "String",
         "direction": "IN",
-        "value": "XL", 
+        "value": "L", 
         "required": true
     },
     "below_price": {
         "name": "below_price",
         "description": "below_price",
-        "type": "String",
+        "type": "Float",
         "direction": "IN",
-        "value": "18000", 
+        "value": "18", 
         "required": true
     },
     "above_price": {
         "name": "above_price",
         "description": "above_price",
-        "type": "String",
+        "type": "Float",
         "direction": "IN",
-        "value": "400000", 
+        "value": "50", 
         "required": true
-    }
+    },
+    "quantity": {
+        "name": "quantity",
+        "description": "quantity",
+        "type": "Int",
+        "direction": "IN",
+        "value": "3", 
+        "required": true
+    },
+    "file_output": {
+        "name": "file_output", 
+        "description": "file_output ", 
+        "type": "File",
+        "direction": "OUT",
+        "value": "",
+        "required": true
+  }
  }
   

@@ -11,3 +11,4 @@ dependencies:
   - pip:
     - rpaframework==28.5.1        # https://rpaframework.org/releasenotes.html
     - dop-rpaframework==1.2.4
+   

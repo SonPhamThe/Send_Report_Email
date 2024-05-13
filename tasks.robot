@@ -15,7 +15,7 @@ Library             String
 Library             RPA.Windows
 Library             RPA.HTTP
 Library             RPA.Excel.Application
-Library    RPA.JSON
+Library             RPA.JSON
 Resource            resources/login_page.robot
 Resource            resources/mouse_action.robot
 
@@ -71,7 +71,7 @@ Automated E-commerce Shopping
 
 *** Keywords ***
 Open Website Magento
-    Open Available Browser    ${MAGENTO_URL}    maximized=True    headless=${False}
+    Open Available Browser    ${MAGENTO_URL}    maximized=${True}    headless=${False}
 
 Login With Magento Credentials
     [Documentation]    Logging into the Magento website using stored credentials. It clicks on the "Sign In" link,
@@ -81,7 +81,7 @@ Login With Magento Credentials
     Click Link    link:Sign In
     ${meganto_account_credentials}=    Get Asset    meganto_account
     ${meganto_account_credentials}=    Set Variable    ${meganto_account_credentials}[value]
-    ${meganto_account_credentials}=    Convert String to JSON    ${meganto_account_credentials}
+    # ${meganto_account_credentials}=    Convert String to JSON    ${meganto_account_credentials}
 
     Wait Until Keyword Succeeds
     ...    3x
@@ -256,9 +256,9 @@ Add Product To Cart By Color, Size And Price
 
 Go To Cart And Make A Payment
     [Documentation]    Proceeds to the checkout after adding products to the cart and saves the product information into an Excel file if the payment is successful
-    
+
     Wait Until Element Is Not Visible    xpath://span[@class='counter qty empty']    timeout=5s
-    Wait Until Page Contains Element    xpath://span[@class='counter qty']    timeout=5s
+    Wait Until Page Contains Element    xpath://a[@class='action showcart']//span[@class='counter qty']    timeout=5s
     Wait Until Page Contains Element    xpath://a[@class='action showcart']    timeout=5s
     Click Element When Visible    xpath://a[@class='action showcart']
 
@@ -272,23 +272,35 @@ Go To Cart And Make A Payment
     Wait Until Element Is Not Visible    xpath://div[@id="checkout-shipping-method-load"]    timeout=5s
     Wait Until Element Is Visible    xpath://button[@data-role='opc-continue']    timeout=5s
     Wait Until Element Is Enabled    xpath://button[@data-role='opc-continue']    timeout=5s
-    Click Button    xpath://button[@data-role='opc-continue']
 
-    Wait Until Element Is Not Visible    xpath://div[@class="payment-method-billing-address"]    timeout=5s
-    Wait Until Element Is Visible    xpath://button[@class='action primary checkout']    timeout=5s
-    Wait Until Element Is Enabled    xpath://button[@class='action primary checkout']    timeout=5s
+    FOR    ${counter}    IN RANGE    0    3    1
+        Click Element When Clickable    xpath://button[@data-role='opc-continue']
+        ${timeout}=    Set Variable    10
+        ${status_payment}=    Run Keyword And Return Status
+        ...    Wait Until Element Is Visible
+        ...    xpath://*[@id="checkout-payment-method-load"]/div/div/div[2]/div[2]/div[4]/div/button
+        ...    timeout=${timeout}s
 
-    # Wait Until Page Contains Element
-    # ...    xpath://*[@id="checkout-payment-method-load"]/div/div/div[2]/div[2]/div[4]/div/button
-    # Wait Until Element Is Visible
-    # ...    xpath://*[@id="checkout-payment-method-load"]/div/div/div[2]/div[2]/div[4]/div/button
-    # ...    20s
-    Sleep    15s
-    Click Button    xpath://*[@id="checkout-payment-method-load"]/div/div/div[2]/div[2]/div[4]/div/button
+        ${timeout}=    Evaluate    ${timeout}+15
+        IF    ${status_payment}    BREAK
+    END
 
-    Wait Until Element Is Visible    xpath://div[@class='checkout-success']    timeout=15s
+    FOR    ${counter}    IN RANGE    0    3    1
+        Click Element When Clickable
+        ...    xpath://*[@id="checkout-payment-method-load"]/div/div/div[2]/div[2]/div[4]/div/button
+        ${timeout}=    Set Variable    10
+        ${status_payment}=    Run Keyword And Return Status
+        ...    Wait Until Element Is Visible
+        ...    xpath://*[@id="maincontent"]/div[3]/div/div[2]/div/div/a
+        ...    timeout=${timeout}s
 
-    ${order_info}=    Check Status Payment And Get Order Number
+        ${timeout}=    Evaluate    ${timeout}+15
+
+        IF    ${status_payment}
+            ${order_info}=    Check Status Payment And Get Order Number
+            BREAK
+        END
+    END
 
     IF    '${order_info['STATUS_PAYMENT']}' == 'True'
         Create File Excel Data
@@ -300,6 +312,15 @@ Go To Cart And Make A Payment
             ...    ${size_product}
         END
         Save Workbook
+    END
+
+Test
+    [Arguments]    ${locator_button_1}    ${locator_button_2}
+    ${check_button_order}=    Wait And Click Button    ${locator_button_2}
+
+    WHILE    not ${check_button_order}
+        Click Element When Clickable    ${locator_button_1}
+        ${check_button_order}=    Wait And Click Button    ${locator_button_2}
     END
 
 Get Product Links

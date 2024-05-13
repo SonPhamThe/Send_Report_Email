@@ -15,6 +15,7 @@ Library             String
 Library             RPA.Windows
 Library             RPA.HTTP
 Library             RPA.Excel.Application
+Library    RPA.JSON
 Resource            resources/login_page.robot
 Resource            resources/mouse_action.robot
 
@@ -80,6 +81,7 @@ Login With Magento Credentials
     Click Link    link:Sign In
     ${meganto_account_credentials}=    Get Asset    meganto_account
     ${meganto_account_credentials}=    Set Variable    ${meganto_account_credentials}[value]
+    ${meganto_account_credentials}=    Convert String to JSON    ${meganto_account_credentials}
 
     Wait Until Keyword Succeeds
     ...    3x

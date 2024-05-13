@@ -71,7 +71,7 @@ Automated E-commerce Shopping
 
 *** Keywords ***
 Open Website Magento
-    Open Available Browser    ${MAGENTO_URL}    maximized=True
+    Open Available Browser    ${MAGENTO_URL}    maximized=True    headless=${False}
 
 Login With Magento Credentials
     [Documentation]    Logging into the Magento website using stored credentials. It clicks on the "Sign In" link,

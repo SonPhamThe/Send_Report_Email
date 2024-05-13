@@ -87,8 +87,8 @@ Login With Magento Credentials
     ...    3x
     ...    1s
     ...    Login With Credentials
-    ...    ${meganto_account_credentials}[username_meganto]
-    ...    ${meganto_account_credentials}[password_meganto]
+    ...    ${meganto_account_credentials}[username]
+    ...    ${meganto_account_credentials}[password]
     ...    css=span.customer-name
 
 Choose Each Product

@@ -261,7 +261,6 @@ Add Product To Cart By Color, Size And Price
         ${count_empty_link}=    Set Variable    0
 
         FOR    ${link}    IN    @{product_links}
-            ${link}=    Catenate    ${link}    abc
             ${status_code}=    Check Url Status    ${link}
             IF    '${link}' != ''
                 IF    ${status_code}

@@ -352,7 +352,6 @@ Go To Cart And Make A Payment
     END
 
     ${file_path}=    Catenate    SEPARATOR=    ${DIRECTORY_PATH}    /    ${EXCEL_FILE_NAME}
-    Log    The path of the Excel file is: ${file_path}
     Set Out Arg    file_output    ${file_path}
 
 Get Product Links
@@ -427,11 +426,11 @@ Check Color Exists
     [Arguments]    ${color}
     ${colors}=    Get WebElements    css:.swatch-option.color
     ${color_found}=    Set Variable    ${FALSE}
-    FOR    ${elem}    IN    @{colors}
-        ${value}=    Get Element Attribute    ${elem}    option-label
-        IF    '${color}' == '${value}'
+    FOR    ${element}    IN    @{colors}
+        ${value_color}=    Get Element Attribute    ${element}    option-label
+        IF    '${color}' == '${value_color}'
             ${color_found}=    Set Variable    ${TRUE}
-            Click Element    ${elem}
+            Click Element    ${element}
             BREAK
         END
     END

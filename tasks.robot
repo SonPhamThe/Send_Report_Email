@@ -16,6 +16,7 @@ Library             RPA.Windows
 Library             RPA.HTTP
 Library             RPA.Excel.Application
 Library             RPA.JSON
+Library             DateTime
 Resource            resources/login_page.robot
 Resource            resources/mouse_action.robot
 
@@ -29,8 +30,10 @@ ${color_product}                ${EMPTY}
 ${size_product}                 ${EMPTY}
 ${url_product}                  ${EMPTY}
 
-${EXCEL_FILE_NAME}    data_magento.xlsx
-${DIRECTORY_PATH}    ${CURDIR}
+${EXCEL_FILE_NAME}              data_magento.xlsx
+${DIRECTORY_PATH}               ${CURDIR}
+
+${current_time}                 ${EMPTY}
 
 ${MAGENTO_URL}                  https://magento.softwaretestingboard.com/
 
@@ -84,7 +87,7 @@ Login With Magento Credentials
     Click Link    link:Sign In
     ${meganto_account_credentials}=    Get Asset    meganto_account
     ${meganto_account_credentials}=    Set Variable    ${meganto_account_credentials}[value]
-    ${meganto_account_credentials}=    Convert String to JSON    ${meganto_account_credentials}
+    # ${meganto_account_credentials}=    Convert String to JSON    ${meganto_account_credentials}
 
     Wait Until Keyword Succeeds
     ...    3x
@@ -262,7 +265,6 @@ Go To Cart And Make A Payment
 
     Wait Until Element Is Not Visible    xpath://span[@class='counter qty empty']    timeout=5s
     Wait Until Page Contains Element    xpath://a[@class='action showcart']//span[@class='counter qty']    timeout=5s
-    Wait Until Page Contains Element    xpath://a[@class='action showcart']    timeout=5s
     Click Element When Visible    xpath://a[@class='action showcart']
 
     Wait Until Element Is Visible    xpath://a[@class='action viewcart']    timeout=10s
@@ -274,8 +276,6 @@ Go To Cart And Make A Payment
 
     Wait Until Element Is Not Visible    xpath://div[@id="checkout-shipping-method-load"]    timeout=5s
     Wait Until Element Is Visible    xpath://button[@data-role='opc-continue']    timeout=5s
-    Wait Until Element Is Enabled    xpath://button[@data-role='opc-continue']    timeout=5s
-
     FOR    ${counter}    IN RANGE    0    3    1
         Click Element When Clickable    xpath://button[@data-role='opc-continue']
         ${timeout}=    Set Variable    10
@@ -300,6 +300,8 @@ Go To Cart And Make A Payment
         ${timeout}=    Evaluate    ${timeout}+15
 
         IF    ${status_payment}
+            ${current_datetime}=    Get Current Date    result_format=%H:%M:%S %Y-%m-%d
+            Set Global Variable    ${current_time}    ${current_datetime}
             ${order_info}=    Check Status Payment And Get Order Number
             BREAK
         END
@@ -465,6 +467,7 @@ Create File Excel Data
     Set Worksheet Value    1    4    Order Number
     Set Worksheet Value    1    5    Size
     Set Worksheet Value    1    6    Color
+    Set Worksheet Value    1    7    Time
 
 Save Infomation By Excel Files
     [Documentation]    Saves the information of each product along with the order number, color, and size into the Excel file

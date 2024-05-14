@@ -1,26 +1,26 @@
 {
     "category": {
-          "name": "category", 
-          "description": "category ", 
-          "type": "String",
-          "direction": "IN",
-          "value": "Men",
-          "required": true
+        "name": "category",
+        "description": "category ",
+        "type": "String",
+        "direction": "IN",
+        "value": "Men",
+        "required": true
     },
     "wearables": {
-          "name": "wearables",
-          "description": "wearables",
-          "type": "String",
-          "direction": "IN",
-          "value": "Tops", 
-          "required": true
+        "name": "wearables",
+        "description": "wearables",
+        "type": "String",
+        "direction": "IN",
+        "value": "Tops",
+        "required": true
     },
     "product_type": {
         "name": "product_type",
         "description": "product_type",
         "type": "String",
         "direction": "IN",
-        "value": "Jackets", 
+        "value": "Jackets",
         "required": true
     },
     "color": {
@@ -28,7 +28,7 @@
         "description": "color",
         "type": "String",
         "direction": "IN",
-        "value": "Blue", 
+        "value": "Blue",
         "required": true
     },
     "size": {
@@ -36,7 +36,7 @@
         "description": "size",
         "type": "String",
         "direction": "IN",
-        "value": "L", 
+        "value": "L",
         "required": true
     },
     "below_price": {
@@ -44,7 +44,7 @@
         "description": "below_price",
         "type": "Float",
         "direction": "IN",
-        "value": "18", 
+        "value": "18",
         "required": true
     },
     "above_price": {
@@ -52,7 +52,7 @@
         "description": "above_price",
         "type": "Float",
         "direction": "IN",
-        "value": "50", 
+        "value": "50",
         "required": true
     },
     "quantity": {
@@ -60,16 +60,15 @@
         "description": "quantity",
         "type": "Int",
         "direction": "IN",
-        "value": "3", 
+        "value": "3",
         "required": true
     },
     "file_output": {
-        "name": "file_output", 
-        "description": "file_output ", 
+        "name": "file_output",
+        "description": "file_output ",
         "type": "File",
         "direction": "OUT",
-        "value": "",
+        "value": "E:\\Rainscales\\work\\Magento E-commerce/data_magento.xlsx",
         "required": true
-  }
- }
-  
+    }
+}

@@ -11,6 +11,7 @@ Library             DOP.RPA.ProcessArgument
 Library             RPA.Excel.Files
 Library             Collections
 Library             ConvertString
+Library             CheckStatusCode
 Library             String
 Library             RPA.Windows
 Library             RPA.HTTP
@@ -244,27 +245,58 @@ Choose Each Product
 
 Add Product To Cart By Color, Size And Price
     [Documentation]    Add the product to the cart based on the specified color and size
-    ${values}=    Get List Items    css:#limiter    values=True
+
+    ${value_visible}=    Run Keyword And Return Status    Get List Items    css:#limiter    values=True
+    IF    ${value_visible}
+        ${values}=    Get List Items    css:#limiter    values=True
+    ELSE
+        Fatal Error    Product Not Found
+    END
 
     FOR    ${value}    IN    @{values}
         IF    ${value} > 12    Go To    ${url_product}
         Select From List By Value    (//select[@id='limiter'])[2]    ${value}
         ${product_links}=    Get Product Links
+
+        ${count_empty_link}=    Set Variable    0
+
         FOR    ${link}    IN    @{product_links}
-            Go To    ${link}
-            ${check_product_to_cart}=    Check Product By Size, Color And Price
-            IF    ${check_product_to_cart}
-                Input Quantity Product
-                Click Element    id:product-addtocart-button
-            END
+            ${link}=    Catenate    ${link}    abc
+            ${status_code}=    Check Url Status    ${link}
+            IF    '${link}' != ''
+                IF    ${status_code}
+                    Log    Link Product errors 404
+                ELSE 
+                    Process To Product    ${link}
+                END
+            ELSE
+                ${count_empty_link}=    Evaluate    ${count_empty_link}+1
+            END            
         END
+
+        
+
+        IF    ${count_empty_link} != 0
+            Log    Have ${count_empty_link} Empty Link
+        END
+    END
+
+Process To Product
+    [Documentation]    Go To Detail Product And Check Product By Size, Color And Price Then Add Product
+    [Arguments]    ${link}
+    Go To    ${link}
+    ${check_product_to_cart}=    Check Product By Size, Color And Price
+    IF    ${check_product_to_cart}
+        Input Quantity Product
+        Click Element    id:product-addtocart-button
     END
 
 Go To Cart And Make A Payment
     [Documentation]    Proceeds to the checkout after adding products to the cart and saves the product information into an Excel file if the payment is successful
 
     Wait Until Element Is Not Visible    xpath://span[@class='counter qty empty']    timeout=5s
-    Wait Until Page Contains Element    xpath://a[@class='action showcart']//span[@class='counter qty']    timeout=5s
+    ${check_cart}=    Run Keyword And Return Status   Wait Until Page Contains Element    xpath://a[@class='action showcart']//span[@class='counter qty']    timeout=5s
+    Run Keyword If    not ${check_cart}    Fatal Error    Not Found Product In Cart To Payment
     Click Element When Visible    xpath://a[@class='action showcart']
 
     Wait Until Element Is Visible    xpath://a[@class='action viewcart']    timeout=10s
@@ -315,6 +347,7 @@ Go To Cart And Make A Payment
             ...    ${order_info}[order_number]
             ...    ${color_product}
             ...    ${size_product}
+            ...    ${current_time}
         END
         Save Workbook
     END
@@ -322,15 +355,6 @@ Go To Cart And Make A Payment
     ${file_path}=    Catenate    SEPARATOR=    ${DIRECTORY_PATH}    /    ${EXCEL_FILE_NAME}
     Log    The path of the Excel file is: ${file_path}
     Set Out Arg    file_output    ${file_path}
-
-Test
-    [Arguments]    ${locator_button_1}    ${locator_button_2}
-    ${check_button_order}=    Wait And Click Button    ${locator_button_2}
-
-    WHILE    not ${check_button_order}
-        Click Element When Clickable    ${locator_button_1}
-        ${check_button_order}=    Wait And Click Button    ${locator_button_2}
-    END
 
 Get Product Links
     [Documentation]    Retrieve the links of all products listed on the current page.
@@ -471,7 +495,7 @@ Create File Excel Data
 
 Save Infomation By Excel Files
     [Documentation]    Saves the information of each product along with the order number, color, and size into the Excel file
-    [Arguments]    ${product}    ${order_number}    ${color}    ${size}
+    [Arguments]    ${product}    ${order_number}    ${color}    ${size}    ${current_time}
     ${row}=    Create Dictionary
     ...    Name=${product['name_product']}
     ...    Price=${product['price_product']}
@@ -479,9 +503,5 @@ Save Infomation By Excel Files
     ...    Order Number=${order_number}
     ...    Size=${size}
     ...    Color=${color}
+    ...    Time=${current_time}
     Append Rows To Worksheet    ${row}    header=True
-
-Log And Exit
-    [Arguments]    ${message}
-    Log    ${message}    level=ERROR
-    RETURN

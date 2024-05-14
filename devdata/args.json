@@ -36,7 +36,7 @@
         "description": "size",
         "type": "String",
         "direction": "IN",
-        "value": "L",
+        "value": "XL",
         "required": true
     },
     "below_price": {

@@ -17,3 +17,4 @@ testrun/*
 *.pkl
 *.output.html
 *.log.html
+*.test.html

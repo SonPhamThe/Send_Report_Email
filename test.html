@@ -4,23 +4,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
-    <div class="toolbar toolbar-products">
-        ::befor
-        <div class="modes"></div>
-        <p class="toolbar-amount" id="toolbar-amount"></p>
-        <div class="pages">
-            <ul items pages-items>
-                <li class="item pages-item-previous"></li>
-                <li class="item"></li>
-                <li class="item"></li>
-                <li class="item current"></li>
-                <li class="item"></li>
-                <li class="item pages-item-next"></li>
-            </ul>
-        </div>
-        ::after
-    </div>
+<body>  
+    tôi có đoạn code robot sau "Wait Until Page Contains Element    xpath://div[@class='toolbar toolbar-products']    10s
+    Wait Until Page Contains Element    xpath://div[@class='toolbar toolbar-products']//div[@class='pages']    10s
+    Wait Until Page Contains Element
+    ...    xpath://div[@class='toolbar toolbar-products']//ul[contains(@class, 'items pages-items')]
+    ...    10s
+    ${check_last_page}=    Run Keyword And Return Status
+    ...    Element Should Not Be Visible
+    ...    xpath://div[@class='toolbar toolbar-products']//ul[contains(@class, 'items pages-items')]//li[contains(@class, 'pages-item-next')]
+    ...    10s" tôi muốn thực hiện
 
     
 </body>

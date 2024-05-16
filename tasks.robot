@@ -147,17 +147,45 @@ Add Product To Cart By Color, Size And Price
     ${value_visible}=    Run Keyword And Return Status    Get List Items    css:#limiter    values=True
     IF    not ${value_visible}    Fatal Error    Product Not Found
 
-    ${values_webelement}=    Get WebElements    css:ul.items.pages-items li.item a.page
+    ${values_webelement}=    Get WebElements    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]/ul/li[@class='item']/a
     ${values_list}=    Create List
     FOR    ${element}    IN    @{values_webelement}
         ${link}=    Get Element Attribute    ${element}    href
         Append To List    ${values_list}    ${link}
     END
-
+    
+    # Get Product In First Page
+    Get Product In Page 
+    
+    # Get Product In Remaining Page
     FOR    ${value}    IN    @{values_list}
-        ${product_links}=    Get Product Links
-        ${total_links}=    Get Length    ${product_links}
+        Go To    ${value}
+        Get Product In Page
+        Wait Until Page Contains Element    xpath://div[@class='toolbar toolbar-products']    10s
+        Wait Until Page Contains Element    xpath://div[@class='toolbar toolbar-products']//div[@class='pages']    10s
+        Wait Until Page Contains Element
+        ...    xpath://div[@class='toolbar toolbar-products']//ul[contains(@class, 'items pages-items')]
+        ...    10s
+        ${check_last_page}=    Run Keyword And Return Status
+        ...    Element Should Not Be Visible
+        ...    xpath://div[@class='toolbar toolbar-products']//ul[contains(@class, 'items pages-items')]//li[contains(@class, 'pages-item-next')]
+        ...    10s
+        IF   not ${check_last_page}    Exit For Loop   
+    END
 
+Process To Product
+    [Documentation]    Go To Detail Product And Check Product By Size, Color And Price Then Add Product
+    [Arguments]    ${link}
+    Go To    ${link}
+    ${check_product_to_cart}=    Check Product By Size, Color And Price
+    IF    ${check_product_to_cart}
+        Input Quantity Product
+        Click Element    id:product-addtocart-button
+    END
+
+Get Product In Page
+    ${product_links}=    Get Product Links
+        ${total_links}=    Get Length    ${product_links}
         ${count_empty_link}=    Set Variable    0
 
         FOR    ${index}    ${link}    IN ENUMERATE    @{product_links}
@@ -181,30 +209,16 @@ Add Product To Cart By Color, Size And Price
             Log    Have ${count_empty_link} Empty Link
         END
 
-        Wait Until Element Is Visible    xpath://div[@class='toolbar toolbar-products']    10s
-        Wait Until Element Is Visible    xpath://div[@class='toolbar toolbar-products']//div[@class='pages']    10s
-        Wait Until Element Is Visible
-        ...    xpath://div[@class='toolbar toolbar-products']//ul[contains(@class, 'items pages-items')]
-        ...    10s
-        ${check_last_page}=    Run Keyword And Return Status
-        ...    Wait Until Element Is Visible    
-        ...    xpath://div[@class='toolbar toolbar-products']//ul[contains(@class, 'items pages-items')]//li[contains(@class, 'pages-item-next')]
-        ...    10s
-        IF    not ${check_last_page}
-            BREAK
-        END
-        Go To    ${value} 
+Get Product Links
+    [Documentation]    Retrieve the links of all products listed on the current page.
+    @{product_elements}=    Get WebElements
+    ...    css:ol.products.list.items.product-items li.item.product.product-item a.product.photo.product-item-photo
+    @{product_links}=    Create List
+    FOR    ${element}    IN    @{product_elements}
+        ${link}=    Get Element Attribute    ${element}    href
+        Append To List    ${product_links}    ${link}
     END
-
-Process To Product
-    [Documentation]    Go To Detail Product And Check Product By Size, Color And Price Then Add Product
-    [Arguments]    ${link}
-    Go To    ${link}
-    ${check_product_to_cart}=    Check Product By Size, Color And Price
-    IF    ${check_product_to_cart}
-        Input Quantity Product
-        Click Element    id:product-addtocart-button
-    END
+    RETURN    ${product_links}
 
 Go To Cart And Make A Payment
     [Documentation]    Proceeds to the checkout after adding products to the cart and saves the product information into an Excel file if the payment is successful
@@ -274,17 +288,6 @@ Go To Cart And Make A Payment
 
     ${file_path}=    Catenate    SEPARATOR=    ${DIRECTORY_PATH}    /    ${EXCEL_FILE_NAME}
     Set Out Arg    file_output    ${file_path}
-
-Get Product Links
-    [Documentation]    Retrieve the links of all products listed on the current page.
-    @{product_elements}=    Get WebElements
-    ...    css:ol.products.list.items.product-items li.item.product.product-item a.product.photo.product-item-photo
-    @{product_links}=    Create List
-    FOR    ${element}    IN    @{product_elements}
-        ${link}=    Get Element Attribute    ${element}    href
-        Append To List    ${product_links}    ${link}
-    END
-    RETURN    ${product_links}
 
 Check Product By Size, Color And Price
     [Documentation]    Checks if the product matches the specified size, color, and price

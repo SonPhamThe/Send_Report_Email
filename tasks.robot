@@ -15,7 +15,6 @@ Library             CheckStatusCode
 Library             String
 Library             RPA.Windows
 Library             RPA.HTTP
-Library             RPA.Excel.Application
 Library             RPA.JSON
 Library             DateTime
 Resource            resources/login_page.robot
@@ -41,24 +40,12 @@ ${MAGENTO_URL}                  https://magento.softwaretestingboard.com/
 # Men's Category IDs
 ${MEN_CATEGORY_ID}              ui-id-5
 ${TOPS_MEN_CATEGORY_ID}         ui-id-17
-${JACKETS_MEN_CATEGORY_ID}      ui-id-19
-${HOODIES_MEN_CATEGORY_ID}      ui-id-20
-${TEES_MEN_CATEGORY_ID}         ui-id-21
-${TANKS_MEN_CATEGORY_ID}        ui-id-22
 ${BOTTOMS_MEN_CATEGORY_ID}      ui-id-18
-${PANTS_MEN_CATEGORY_ID}        ui-id-23
-${SHORTS_MEN_CATEGORY_ID}       ui_id_24
 
 # Women's Category IDs
 ${WOMEN_CATEGORY_ID}            ui-id-4
 ${TOPS_WOMEN_CATEGORY_ID}       ui-id-9
-${JACKETS_WOMEN_CATEGORY_ID}    ui-id-11
-${HOODIES_WOMEN_CATEGORY_ID}    ui-id-12
-${TEES_WOMEN_CATEGORY_ID}       ui-id-13
-${TANKS_WOMEN_CATEGORY_ID}      ui-id-14
 ${BOTTOMS_WOMEN_CATEGORY_ID}    ui-id-10
-${PANTS_WOMEN_CATEGORY_ID}      ui-id-15
-${SHORTS_WOMEN_CATEGORY_ID}     ui_id_16
 
 # Gear Category IDs
 ${GEAR_CATEGORY_ID}             ui-id-6
@@ -88,7 +75,6 @@ Login With Magento Credentials
     Click Link    link:Sign In
     ${meganto_account_credentials}=    Get Asset    meganto_account
     ${meganto_account_credentials}=    Set Variable    ${meganto_account_credentials}[value]
-    ${meganto_account_credentials}=    Convert String to JSON    ${meganto_account_credentials}
 
     Wait Until Keyword Succeeds
     ...    3x
@@ -117,53 +103,12 @@ Choose Each Product
         Mouse Over Element    ${MEN_CATEGORY_ID}    Id men not found
         IF    '${wearables_value}' == 'Tops'
             Wait Until Element Is Visible    xpath=//a[@id="${TOPS_MEN_CATEGORY_ID}"]
-            Mouse Over Element    ${TOPS_MEN_CATEGORY_ID}    Id tops men not found
-            IF    '${product_type_value}' == 'Jackets'
-                Wait Until Element Is Visible    xpath=//a[@id="${JACKETS_MEN_CATEGORY_ID}"]
-                Mouse Over And Click Element    ${JACKETS_MEN_CATEGORY_ID}    Id jacket men not found
-                Set Global Variable
-                ...    ${url_product}
-                ...    https://magento.softwaretestingboard.com/men/tops-men/jackets-men.html
-            END
-            IF    '${product_type_value}' == 'Hoodies & Sweatshirts'
-                Wait Until Element Is Visible    xpath=//a[@id="${HOODIES_MEN_CATEGORY_ID}"]
-                Mouse Over And Click Element    ${HOODIES_MEN_CATEGORY_ID}    Id hoodies men not found
-                Set Global Variable
-                ...    ${url_product}
-                ...    https://magento.softwaretestingboard.com/men/tops-men/hoodies-and-sweatshirts-men.html
-            END
-            IF    '${product_type_value}' == 'Tees'
-                Wait Until Element Is Visible    xpath=//a[@id="${TEES_MEN_CATEGORY_ID}"]
-                Mouse Over And Click Element    ${TEES_MEN_CATEGORY_ID}    Id tees men not found
-                Set Global Variable
-                ...    ${url_product}
-                ...    https://magento.softwaretestingboard.com/men/tops-men/tees-men.html
-            END
-            IF    '${product_type_value}' == 'Tanks'
-                Wait Until Element Is Visible    xpath=//a[@id="${TANKS_MEN_CATEGORY_ID}"]
-                Mouse Over And Click Element    ${TANKS_MEN_CATEGORY_ID}    Id tanks men not found
-                Set Global Variable
-                ...    ${url_product}
-                ...    https://magento.softwaretestingboard.com/men/tops-men/tanks-men.html
-            END
+            Mouse Over And Click Element    ${TOPS_MEN_CATEGORY_ID}    Id tops men not found
         END
 
         IF    '${wearables_value}' == 'Bottoms'
-            Mouse Over Element    ${BOTTOMS_MEN_CATEGORY_ID}    Id bottoms men not found
-            IF    '${product_type_value}' == 'Pants'
-                Wait Until Element Is Visible    xpath=//a[@id="${PANTS_MEN_CATEGORY_ID}"]
-                Mouse Over And Click Element    ${PANTS_MEN_CATEGORY_ID}    Id pants men not found
-                Set Global Variable
-                ...    ${url_product}
-                ...    https://magento.softwaretestingboard.com/men/bottoms-men/pants-men.html
-            END
-            IF    '${product_type_value}' == 'Shorts'
-                Wait Until Element Is Visible    xpath=//a[@id="${SHORTS_MEN_CATEGORY_ID}"]
-                Mouse Over And Click Element    ${SHORTS_MEN_CATEGORY_ID}    Id shorts men not found
-                Set Global Variable
-                ...    ${url_product}
-                ...    https://magento.softwaretestingboard.com/men/bottoms-men/shorts-men.html
-            END
+            Wait Until Element Is Visible    xpath=//a[@id="${BOTTOMS_MEN_CATEGORY_ID}]
+            Mouse Over And Click Element    ${BOTTOMS_MEN_CATEGORY_ID}    Id bottoms men not found
         END
     END
 
@@ -171,54 +116,12 @@ Choose Each Product
         Mouse Over Element    ${WOMEN_CATEGORY_ID}    Id women not found
         IF    '${wearables_value}' == 'Tops'
             Wait Until Element Is Visible    xpath=//a[@id="${TOPS_WOMEN_CATEGORY_ID}"]
-            Mouse Over Element    ${TOPS_WOMEN_CATEGORY_ID}    Id top women not found
-            IF    '${product_type_value}' == 'Jackets'
-                Wait Until Element Is Visible    xpath=//a[@id="${JACKETS_WOMEN_CATEGORY_ID}"]
-                Mouse Over And Click Element    ${JACKETS_WOMEN_CATEGORY_ID}    Id jackets women not found
-                Set Global Variable
-                ...    ${url_product}
-                ...    https://magento.softwaretestingboard.com/women/tops-women/jackets-women.html
-            END
-            IF    '${product_type_value}' == 'Hoodies & Sweatshirts'
-                Wait Until Element Is Visible    xpath=//a[@id="${HOODIES_WOMEN_CATEGORY_ID}"]
-                Mouse Over And Click Element    ${HOODIES_WOMEN_CATEGORY_ID}    Id hoodies women not found
-                Set Global Variable
-                ...    ${url_product}
-                ...    https://magento.softwaretestingboard.com/women/tops-women/hoodies-and-sweatshirts-women.html
-            END
-            IF    '${product_type_value}' == 'Tees'
-                Wait Until Element Is Visible    xpath=//a[@id="${TEES_WOMEN_CATEGORY_ID}"]
-                Mouse Over And Click Element    ${TEES_WOMEN_CATEGORY_ID}    Id tees women not found
-                Set Global Variable
-                ...    ${url_product}
-                ...    https://magento.softwaretestingboard.com/women/tops-women/tees-women.html
-            END
-            IF    '${product_type_value}' == 'Bras & Tanks'
-                Wait Until Element Is Visible    xpath=//a[@id="${TANKS_WOMEN_CATEGORY_ID}"]
-                Mouse Over And Click Element    ${TANKS_WOMEN_CATEGORY_ID}    Id bras & tanks women not found
-                Set Global Variable
-                ...    ${url_product}
-                ...    https://magento.softwaretestingboard.com/women/tops-women/tanks-women.html
-            END
+            Mouse Over And Click Element    ${TOPS_WOMEN_CATEGORY_ID}    Id top women not found
         END
 
         IF    '${wearables_value}' == 'Bottoms'
             Wait Until Element Is Visible    xpath=//a[@id="${BOTTOMS_WOMEN_CATEGORY_ID}"]
-            Mouse Over Element    ${BOTTOMS_WOMEN_CATEGORY_ID}    Id bottoms women not found
-            IF    '${product_type_value}' == 'Pants'
-                Wait Until Element Is Visible    xpath=//a[@id="${PANTS_WOMEN_CATEGORY_ID}"]
-                Mouse Over And Click Element    ${PANTS_WOMEN_CATEGORY_ID}    Id pants women not found
-                Set Global Variable
-                ...    ${url_product}
-                ...    https://magento.softwaretestingboard.com/women/bottoms-women/pants-women.html
-            END
-            IF    '${product_type_value}' == 'Shorts'
-                Wait Until Element Is Visible    xpath=//a[@id="${SHORTS_WOMEN_CATEGORY_ID}"]
-                Mouse Over And Click Element    ${SHORTS_WOMEN_CATEGORY_ID}    Id shorts women not found
-                Set Global Variable
-                ...    ${url_product}
-                ...    https://magento.softwaretestingboard.com/women/bottoms-women/shorts-women.html
-            END
+            Mouse Over And Click Element    ${BOTTOMS_WOMEN_CATEGORY_ID}    Id bottoms women not found
         END
     END
 
@@ -227,19 +130,14 @@ Choose Each Product
         IF    '${product_type_value}' == 'Bags'
             Wait Until Element Is Visible    xpath=//a[@id="${BAGS_GEAR_CATEGORY_ID}"]
             Mouse Over And Click Element    ${BAGS_GEAR_CATEGORY_ID}    Id bags not found
-            Set Global Variable    ${url_product}    https://magento.softwaretestingboard.com/gear/bags.html
         END
         IF    '${product_type_value}' == 'Fitness Equipment'
             Wait Until Element Is Visible    xpath=//a[@id="${FITNESS_GEAR_CATEGORY_ID}"]
             Mouse Over And Click Element    ${FITNESS_GEAR_CATEGORY_ID}    Id fitness equipment not found
-            Set Global Variable
-            ...    ${url_product}
-            ...    https://magento.softwaretestingboard.com/gear/fitness-equipment.html
         END
         IF    '${product_type_value}' == 'Watches'
             Wait Until Element Is Visible    xpath=//a[@id="${WATCHES_GEAR_CATEGORY_ID}"]
             Mouse Over And Click Element    ${WATCHES_GEAR_CATEGORY_ID}    Id watches not found
-            Set Global Variable    ${url_product}    https://magento.softwaretestingboard.com/gear/watches.html
         END
     END
 
@@ -247,37 +145,55 @@ Add Product To Cart By Color, Size And Price
     [Documentation]    Add the product to the cart based on the specified color and size
 
     ${value_visible}=    Run Keyword And Return Status    Get List Items    css:#limiter    values=True
-    IF    ${value_visible}
-        ${values}=    Get List Items    css:#limiter    values=True
-    ELSE
-        Fatal Error    Product Not Found
+    IF    not ${value_visible}    Fatal Error    Product Not Found
+
+    ${values_webelement}=    Get WebElements    css:ul.items.pages-items li.item a.page
+    ${values_list}=    Create List
+    FOR    ${element}    IN    @{values_webelement}
+        ${link}=    Get Element Attribute    ${element}    href
+        Append To List    ${values_list}    ${link}
     END
 
-    FOR    ${value}    IN    @{values}
-        IF    ${value} > 12    Go To    ${url_product}
-        Select From List By Value    (//select[@id='limiter'])[2]    ${value}
+    FOR    ${value}    IN    @{values_list}
         ${product_links}=    Get Product Links
+        ${total_links}=    Get Length    ${product_links}
 
         ${count_empty_link}=    Set Variable    0
 
-        FOR    ${link}    IN    @{product_links}
+        FOR    ${index}    ${link}    IN ENUMERATE    @{product_links}
             ${status_code}=    Check Url Status    ${link}
             IF    '${link}' != ''
                 IF    ${status_code}
                     Log    Link Product errors 404
-                ELSE 
+                ELSE
                     Process To Product    ${link}
                 END
             ELSE
                 ${count_empty_link}=    Evaluate    ${count_empty_link}+1
-            END            
-        END
+            END
 
-        
+            IF    ${index} == ${total_links - 1}
+                Go To    https://magento.softwaretestingboard.com/men/tops-men.html
+            END
+        END
 
         IF    ${count_empty_link} != 0
             Log    Have ${count_empty_link} Empty Link
         END
+
+        Wait Until Element Is Visible    xpath://div[@class='toolbar toolbar-products']    10s
+        Wait Until Element Is Visible    xpath://div[@class='toolbar toolbar-products']//div[@class='pages']    10s
+        Wait Until Element Is Visible
+        ...    xpath://div[@class='toolbar toolbar-products']//ul[contains(@class, 'items pages-items')]
+        ...    10s
+        ${check_last_page}=    Run Keyword And Return Status
+        ...    Wait Until Element Is Visible    
+        ...    xpath://div[@class='toolbar toolbar-products']//ul[contains(@class, 'items pages-items')]//li[contains(@class, 'pages-item-next')]
+        ...    10s
+        IF    not ${check_last_page}
+            BREAK
+        END
+        Go To    ${value} 
     END
 
 Process To Product
@@ -294,8 +210,13 @@ Go To Cart And Make A Payment
     [Documentation]    Proceeds to the checkout after adding products to the cart and saves the product information into an Excel file if the payment is successful
 
     Wait Until Element Is Not Visible    xpath://span[@class='counter qty empty']    timeout=5s
-    ${check_cart}=    Run Keyword And Return Status   Wait Until Page Contains Element    xpath://a[@class='action showcart']//span[@class='counter qty']    timeout=5s
-    Run Keyword If    not ${check_cart}    Fatal Error    Not Found Product In Cart To Payment
+    ${check_cart}=    Run Keyword And Return Status
+    ...    Wait Until Page Contains Element
+    ...    xpath://a[@class='action showcart']//span[@class='counter qty']
+    ...    timeout=5s
+    IF    not ${check_cart}
+        Fatal Error    Not Found Product In Cart To Payment
+    END
     Click Element When Visible    xpath://a[@class='action showcart']
 
     Wait Until Element Is Visible    xpath://a[@class='action viewcart']    timeout=10s
@@ -356,7 +277,8 @@ Go To Cart And Make A Payment
 
 Get Product Links
     [Documentation]    Retrieve the links of all products listed on the current page.
-    @{product_elements}=    Get WebElements    css:ol.products li.item.product a.product-item-link
+    @{product_elements}=    Get WebElements
+    ...    css:ol.products.list.items.product-items li.item.product.product-item a.product.photo.product-item-photo
     @{product_links}=    Create List
     FOR    ${element}    IN    @{product_elements}
         ${link}=    Get Element Attribute    ${element}    href

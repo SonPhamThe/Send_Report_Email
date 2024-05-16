@@ -44,7 +44,7 @@
         "description": "below_price",
         "type": "Float",
         "direction": "IN",
-        "value": "18",
+        "value": "17",
         "required": true
     },
     "above_price": {

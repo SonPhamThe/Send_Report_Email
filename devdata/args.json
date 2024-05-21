@@ -68,7 +68,7 @@
         "description": "file_output ",
         "type": "File",
         "direction": "OUT",
-        "value": "E:\\Rainscales\\work\\Magento E-commerce/data_magento.xlsx",
+        "value": "d:\\Magento_Website_Robot/data_magento.xlsx",
         "required": true
     }
 }

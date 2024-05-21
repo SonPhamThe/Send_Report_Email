@@ -77,7 +77,7 @@ Login With Magento Credentials
     Click Element    xpath=//li[@class="authorization-link"]/a
     ${meganto_account_credentials}=    Get Asset    meganto_account
     ${meganto_account_credentials}=    Set Variable    ${meganto_account_credentials}[value]
-    # ${meganto_account_credentials}=    Convert String to JSON    ${meganto_account_credentials}
+    ${meganto_account_credentials}=    Convert String to JSON    ${meganto_account_credentials}
 
     Wait Until Keyword Succeeds
     ...    3x
@@ -172,20 +172,6 @@ Add Product To Cart By Color, Size And Price
         Exit For Loop If    ${check_last_page} == ${FALSE}
     END
 
-    # Get Product In Remaining Page
-    # FOR    ${value}    IN    @{values_list}
-    #     Wait Until Page Contains Element    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]    10s
-    #     Wait Until Page Contains Element    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]    10s
-    #     Wait Until Page Contains Element
-    #     ...    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]/ul
-    #     ...    10s
-    #     ${check_last_page}=    Run Keyword And Return Status
-    #     ...    Element Should Be Visible
-    #     ...    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]/ul/li[@class='item pages-item-next']
-    #     ...    10s
-    #     IF    not ${check_last_page}    BREAK
-    # END
-
 Process To Product
     [Documentation]    Go To Detail Product And Check Product By Size, Color And Price Then Add Product
     [Arguments]    ${link}
@@ -197,6 +183,7 @@ Process To Product
     END
 
 Get Product In Page
+    [Documentation]    Go To Detail Product In Page
     ${product_links}=    Get Product Links
     ${total_links}=    Get Length    ${product_links}
     ${count_empty_link}=    Set Variable    0
@@ -231,6 +218,8 @@ Get Product Links
         ${link}=    Get Element Attribute    ${element}    href
         Append To List    ${product_links}    ${link}
     END
+    Get Length    ${element}
+    Go To    hjttpapapdfaf
     RETURN    ${product_links}
 
 Go To Cart And Make A Payment

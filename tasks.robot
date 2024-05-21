@@ -218,8 +218,6 @@ Get Product Links
         ${link}=    Get Element Attribute    ${element}    href
         Append To List    ${product_links}    ${link}
     END
-    Get Length    ${element}
-    Go To    hjttpapapdfaf
     RETURN    ${product_links}
 
 Go To Cart And Make A Payment

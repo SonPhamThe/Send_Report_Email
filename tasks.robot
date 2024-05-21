@@ -28,7 +28,6 @@ ${order_info}                   ${EMPTY}
 ${global_product_info}          ${EMPTY}
 ${color_product}                ${EMPTY}
 ${size_product}                 ${EMPTY}
-${url_product}                  ${EMPTY}
 
 ${EXCEL_FILE_NAME}              data_magento.xlsx
 ${DIRECTORY_PATH}               ${CURDIR}
@@ -61,6 +60,8 @@ Automated E-commerce Shopping
     Choose Each Product
     Add Product To Cart By Color, Size And Price
     Go To Cart And Make A Payment
+    Log Out Website
+    Close All Browsers
 
 
 *** Keywords ***
@@ -72,10 +73,11 @@ Login With Magento Credentials
     ...    retrieves the username and password from the available data file, and fills in the login form.
     ...    Finally, it verifies the successful login by waiting for the appearance of the customer name component.
 
-    Click Link    link:Sign In
+    Wait Until Element Is Visible    xpath=//li[@class="authorization-link"]/a    10s
+    Click Element    xpath=//li[@class="authorization-link"]/a
     ${meganto_account_credentials}=    Get Asset    meganto_account
     ${meganto_account_credentials}=    Set Variable    ${meganto_account_credentials}[value]
-    ${meganto_account_credentials}=    Convert String to JSON    ${meganto_account_credentials}
+    # ${meganto_account_credentials}=    Convert String to JSON    ${meganto_account_credentials}
 
     Wait Until Keyword Succeeds
     ...    3x
@@ -148,31 +150,41 @@ Add Product To Cart By Color, Size And Price
     ${value_visible}=    Run Keyword And Return Status    Get List Items    css:#limiter    values=True
     IF    not ${value_visible}    Fatal Error    Product Not Found
 
-    ${values_webelement}=    Get WebElements    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]/ul/li[@class='item']/a
+    ${values_webelement}=    Get WebElements
+    ...    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]/ul/li[@class='item']/a
     ${values_list}=    Create List
     FOR    ${element}    IN    @{values_webelement}
         ${link}=    Get Element Attribute    ${element}    href
         Append To List    ${values_list}    ${link}
     END
-    
-    # Get Product In First Page
-    Get Product In Page 
-    
-    # Get Product In Remaining Page
-    FOR    ${value}    IN    @{values_list}
-        Go To    ${value}
+
+    WHILE    ${TRUE}
         Get Product In Page
-        Wait Until Page Contains Element    xpath://div[@class='toolbar toolbar-products']    10s
-        Wait Until Page Contains Element    xpath://div[@class='toolbar toolbar-products']//div[@class='pages']    10s
-        Wait Until Page Contains Element
-        ...    xpath://div[@class='toolbar toolbar-products']//ul[contains(@class, 'items pages-items')]
-        ...    10s
+        Wait Until Page Contains Element    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]    10s
+        Wait Until Page Contains Element    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]    10s
+        Wait Until Page Contains Element    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]/ul    10s
+        
         ${check_last_page}=    Run Keyword And Return Status
-        ...    Element Should Not Be Visible
-        ...    xpath://div[@class='toolbar toolbar-products']//ul[contains(@class, 'items pages-items')]//li[contains(@class, 'pages-item-next')]
+        ...    Element Should Be Visible
+        ...    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]/ul/li[@class='item pages-item-next']
         ...    10s
-        IF   not ${check_last_page}    Exit For Loop   
+        Run Keyword If    ${check_last_page}    Click Element    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]/ul/li[@class='item pages-item-next']
+        Exit For Loop If    ${check_last_page} == ${FALSE}
     END
+
+    # Get Product In Remaining Page
+    # FOR    ${value}    IN    @{values_list}
+    #     Wait Until Page Contains Element    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]    10s
+    #     Wait Until Page Contains Element    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]    10s
+    #     Wait Until Page Contains Element
+    #     ...    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]/ul
+    #     ...    10s
+    #     ${check_last_page}=    Run Keyword And Return Status
+    #     ...    Element Should Be Visible
+    #     ...    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]/ul/li[@class='item pages-item-next']
+    #     ...    10s
+    #     IF    not ${check_last_page}    BREAK
+    # END
 
 Process To Product
     [Documentation]    Go To Detail Product And Check Product By Size, Color And Price Then Add Product
@@ -186,29 +198,29 @@ Process To Product
 
 Get Product In Page
     ${product_links}=    Get Product Links
-        ${total_links}=    Get Length    ${product_links}
-        ${count_empty_link}=    Set Variable    0
+    ${total_links}=    Get Length    ${product_links}
+    ${count_empty_link}=    Set Variable    0
 
-        FOR    ${index}    ${link}    IN ENUMERATE    @{product_links}
-            ${status_code}=    Check Url Status    ${link}
-            IF    '${link}' != ''
-                IF    ${status_code}
-                    Log    Link Product errors 404
-                ELSE
-                    Process To Product    ${link}
-                END
+    ${current_url}=    Get Location
+
+    FOR    ${index}    ${link}    IN ENUMERATE    @{product_links}
+        ${status_code}=    Check Url Status    ${link}
+        IF    '${link}' != ''
+            IF    ${status_code}
+                Log    Link Product errors 404
             ELSE
-                ${count_empty_link}=    Evaluate    ${count_empty_link}+1
+                Process To Product    ${link}
             END
-
-            IF    ${index} == ${total_links - 1}
-                Go To    https://magento.softwaretestingboard.com/men/tops-men.html
-            END
+        ELSE
+            ${count_empty_link}=    Evaluate    ${count_empty_link}+1
         END
 
-        IF    ${count_empty_link} != 0
-            Log    Have ${count_empty_link} Empty Link
+        IF    ${index} == ${total_links - 1}
+            Go To    ${current_url}
         END
+    END
+
+    IF    ${count_empty_link} != 0    Log    Have ${count_empty_link} Empty Link
 
 Get Product Links
     [Documentation]    Retrieve the links of all products listed on the current page.
@@ -429,3 +441,11 @@ Save Infomation By Excel Files
     ...    Color=${color}
     ...    Time=${current_time}
     Append Rows To Worksheet    ${row}    header=True
+
+Log Out Website
+    Wait Until Element Is Visible    xpath://a[@class="logo"]
+    Click Element    xpath://a[@class="logo"]
+    Wait Until Element Is Visible    xpath://span[@class="customer-name"]
+    Click Element    xpath://button[@data-action="customer-menu-toggle"]
+    Wait Until Element Is Visible    xpath://a[contains(@href, 'customer/account/logout/')]
+    Click Element    xpath://a[contains(@href, 'customer/account/logout/')]

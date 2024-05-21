@@ -172,20 +172,6 @@ Add Product To Cart By Color, Size And Price
         Exit For Loop If    ${check_last_page} == ${FALSE}
     END
 
-    # Get Product In Remaining Page
-    # FOR    ${value}    IN    @{values_list}
-    #     Wait Until Page Contains Element    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]    10s
-    #     Wait Until Page Contains Element    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]    10s
-    #     Wait Until Page Contains Element
-    #     ...    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]/ul
-    #     ...    10s
-    #     ${check_last_page}=    Run Keyword And Return Status
-    #     ...    Element Should Be Visible
-    #     ...    xpath://*[@id="maincontent"]/div[3]/div[1]/div[4]/div[2]/ul/li[@class='item pages-item-next']
-    #     ...    10s
-    #     IF    not ${check_last_page}    BREAK
-    # END
-
 Process To Product
     [Documentation]    Go To Detail Product And Check Product By Size, Color And Price Then Add Product
     [Arguments]    ${link}

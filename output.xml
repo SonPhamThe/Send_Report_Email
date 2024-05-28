@@ -1,55 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.1.1 (Python 3.9.13 on win32)" generated="20240528 19:04:56.352" rpa="true" schemaversion="4">
+<robot generator="Robot 6.1.1 (Python 3.9.13 on win32)" generated="20240528 19:46:05.237" rpa="true" schemaversion="4">
 <suite id="s1" name="Tasks" source="c:\Send Result Report Via Email\tasks.robot">
-<test id="s1-t1" name="Send Email" line="17">
-<kw name="Authorize" library="RPA.Email.ImapSmtp">
-<arg>account=${USERNAME}</arg>
-<arg>password=${PASSWORD}</arg>
-<doc>Authorize user to SMTP and IMAP servers.</doc>
-<msg timestamp="20240528 19:04:56.702" level="INFO">Protecting keyword: RPA.Email.ImapSmtp.Authorize</msg>
-<msg timestamp="20240528 19:05:00.787" level="INFO">Log level changed from NONE to INFO.</msg>
-<status status="PASS" starttime="20240528 19:04:56.701" endtime="20240528 19:05:00.786"/>
-</kw>
-<kw name="Get In Arg" library="DOP.RPA.ProcessArgument">
-<var>${RECIPIENTS}</var>
-<arg>recipients_email_address</arg>
-<msg timestamp="20240528 19:05:00.788" level="INFO">Resolving path: devdata\args.json</msg>
-<msg timestamp="20240528 19:05:00.790" level="INFO">${RECIPIENTS} = {'name': 'recipients_email_address', 'description': 'recipients email address ', 'type': 'List', 'direction': 'IN', 'value': ['thesonpham120499@gmail.com', 'lailatobine@gmail.com'], 'required': True}</msg>
-<status status="PASS" starttime="20240528 19:05:00.787" endtime="20240528 19:05:00.790"/>
-</kw>
-<kw name="Log" library="BuiltIn">
-<arg>${RECIPIENTS}</arg>
-<doc>Logs the given message with the given level.</doc>
-<msg timestamp="20240528 19:05:00.792" level="INFO">{'name': 'recipients_email_address', 'description': 'recipients email address ', 'type': 'List', 'direction': 'IN', 'value': ['thesonpham120499@gmail.com', 'lailatobine@gmail.com'], 'required': True}</msg>
-<status status="PASS" starttime="20240528 19:05:00.791" endtime="20240528 19:05:00.792"/>
+<test id="s1-t1" name="Send Email" line="11">
+<kw name="Get Asset" library="DOP.RPA.Asset">
+<var>${gmail_account_credentials}</var>
+<arg>gmail_account</arg>
+<doc>Read a asset from the configured source, e.g. DOP RPA Asset,
+and return it as a ``AssetData`` object.</doc>
+<msg timestamp="20240528 19:46:05.558" level="INFO">Resolving path: devdata\assets.json</msg>
+<msg timestamp="20240528 19:46:05.560" level="INFO">${gmail_account_credentials} = {'key': 'gmail_account', 'name': 'gmail_account', 'asset_type': &lt;AssetDataType.TEXT: 'TEXT'&gt;, 'value': {'username': 'thesonpham120499@gmail.com', 'password': 'dmvncqpblwjamezw'}}</msg>
+<status status="PASS" starttime="20240528 19:46:05.557" endtime="20240528 19:46:05.561"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
-<var>${product_info_value}</var>
-<arg>${RECIPIENTS}[value]</arg>
+<var>${gmail_account_credentials}</var>
+<arg>${gmail_account_credentials}[value]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240528 19:05:00.793" level="INFO">${product_info_value} = ['thesonpham120499@gmail.com', 'lailatobine@gmail.com']</msg>
-<status status="PASS" starttime="20240528 19:05:00.793" endtime="20240528 19:05:00.794"/>
+<msg timestamp="20240528 19:46:05.562" level="INFO">${gmail_account_credentials} = {'username': 'thesonpham120499@gmail.com', 'password': 'dmvncqpblwjamezw'}</msg>
+<status status="PASS" starttime="20240528 19:46:05.561" endtime="20240528 19:46:05.562"/>
 </kw>
-<kw name="Log" library="BuiltIn">
-<arg>${product_info_value}</arg>
-<doc>Logs the given message with the given level.</doc>
-<msg timestamp="20240528 19:05:00.795" level="INFO">['thesonpham120499@gmail.com', 'lailatobine@gmail.com']</msg>
-<status status="PASS" starttime="20240528 19:05:00.794" endtime="20240528 19:05:00.795"/>
+<kw name="Set Variable" library="BuiltIn">
+<var>${username}</var>
+<arg>${gmail_account_credentials}[username]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240528 19:46:05.564" level="INFO">${username} = thesonpham120499@gmail.com</msg>
+<status status="PASS" starttime="20240528 19:46:05.563" endtime="20240528 19:46:05.564"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${password}</var>
+<arg>${gmail_account_credentials}[password]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240528 19:46:05.565" level="INFO">${password} = dmvncqpblwjamezw</msg>
+<status status="PASS" starttime="20240528 19:46:05.564" endtime="20240528 19:46:05.566"/>
+</kw>
+<kw name="Authorize" library="RPA.Email.ImapSmtp">
+<arg>account=${username}</arg>
+<arg>password=${password}</arg>
+<doc>Authorize user to SMTP and IMAP servers.</doc>
+<msg timestamp="20240528 19:46:05.567" level="INFO">Protecting keyword: RPA.Email.ImapSmtp.Authorize</msg>
+<msg timestamp="20240528 19:46:08.972" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20240528 19:46:05.566" endtime="20240528 19:46:08.972"/>
+</kw>
+<kw name="Get In Arg" library="DOP.RPA.ProcessArgument">
+<var>${recipients}</var>
+<arg>recipients_email_address</arg>
+<msg timestamp="20240528 19:46:08.973" level="INFO">Resolving path: devdata\args.json</msg>
+<msg timestamp="20240528 19:46:08.974" level="INFO">${recipients} = {'name': 'recipients_email_address', 'description': 'recipients email address ', 'type': 'List', 'direction': 'IN', 'value': ['thesonpham120499@gmail.com', 'lailatobine@gmail.com'], 'required': True}</msg>
+<status status="PASS" starttime="20240528 19:46:08.973" endtime="20240528 19:46:08.974"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${recipients_value}</var>
+<arg>${recipients}[value]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240528 19:46:08.976" level="INFO">${recipients_value} = ['thesonpham120499@gmail.com', 'lailatobine@gmail.com']</msg>
+<status status="PASS" starttime="20240528 19:46:08.975" endtime="20240528 19:46:08.976"/>
+</kw>
+<kw name="Get In Arg" library="DOP.RPA.ProcessArgument">
+<var>${url_file_excel}</var>
+<arg>file_output</arg>
+<msg timestamp="20240528 19:46:08.978" level="INFO">${url_file_excel} = {'name': 'file_output', 'description': 'file_output ', 'type': 'File', 'direction': 'OUT', 'value': 'd:\\Magento_Website_Robot/data_magento.xlsx', 'required': True}</msg>
+<status status="PASS" starttime="20240528 19:46:08.977" endtime="20240528 19:46:08.978"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${url_file_excel_value}</var>
+<arg>${url_file_excel}[value]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240528 19:46:08.979" level="INFO">${url_file_excel_value} = d:\Magento_Website_Robot/data_magento.xlsx</msg>
+<status status="PASS" starttime="20240528 19:46:08.979" endtime="20240528 19:46:08.979"/>
 </kw>
 <kw name="Send Message" library="RPA.Email.ImapSmtp">
-<arg>sender=${USERNAME}</arg>
-<arg>recipients=${product_info_value}</arg>
+<arg>sender=${username}</arg>
+<arg>recipients=${recipients_value}</arg>
 <arg>subject=Mesage generated by robot</arg>
 <arg>body=This is a body</arg>
-<arg>attachments=data_magento.xlsx</arg>
+<arg>attachments=${url_file_excel_value}</arg>
 <doc>Send SMTP email</doc>
-<msg timestamp="20240528 19:05:00.950" level="WARN">MAIN: application SUB: vnd.openxmlformats-officedocument.spreadsheetml.sheet</msg>
-<status status="PASS" starttime="20240528 19:05:00.795" endtime="20240528 19:05:02.646"/>
+<msg timestamp="20240528 19:46:09.126" level="WARN">MAIN: application SUB: vnd.openxmlformats-officedocument.spreadsheetml.sheet</msg>
+<status status="PASS" starttime="20240528 19:46:08.979" endtime="20240528 19:46:10.745"/>
 </kw>
-<status status="PASS" starttime="20240528 19:04:56.700" endtime="20240528 19:05:02.647"/>
+<status status="PASS" starttime="20240528 19:46:05.556" endtime="20240528 19:46:10.746"/>
 </test>
 <doc>Sending plain text email via gmail</doc>
-<status status="PASS" starttime="20240528 19:04:56.357" endtime="20240528 19:05:02.648"/>
+<status status="PASS" starttime="20240528 19:46:05.243" endtime="20240528 19:46:10.748"/>
 </suite>
 <statistics>
 <total>
@@ -62,6 +93,6 @@
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20240528 19:05:00.950" level="WARN">MAIN: application SUB: vnd.openxmlformats-officedocument.spreadsheetml.sheet</msg>
+<msg timestamp="20240528 19:46:09.126" level="WARN">MAIN: application SUB: vnd.openxmlformats-officedocument.spreadsheetml.sheet</msg>
 </errors>
 </robot>

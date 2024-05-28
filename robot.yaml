@@ -24,6 +24,11 @@ arguments:
       defaultValue:
       description: List recipients email address
   output:
+    - name: output_send_result
+      type: Boolean
+      required: True
+      defaultValue:
+      description: Status send result report via email
 
 condaConfigFile: conda.yaml
 environmentConfigs:

@@ -1,66 +1,10 @@
 {
-    "category": {
-        "name": "category",
-        "description": "category ",
-        "type": "String",
+    "recipients_email_address": {
+        "name": "recipients_email_address",
+        "description": "recipients email address ",
+        "type": "List",
         "direction": "IN",
-        "value": "Men",
-        "required": true
-    },
-    "wearables": {
-        "name": "wearables",
-        "description": "wearables",
-        "type": "String",
-        "direction": "IN",
-        "value": "Tops",
-        "required": true
-    },
-    "product_type": {
-        "name": "product_type",
-        "description": "product_type",
-        "type": "String",
-        "direction": "IN",
-        "value": "Jackets",
-        "required": true
-    },
-    "color": {
-        "name": "color",
-        "description": "color",
-        "type": "String",
-        "direction": "IN",
-        "value": "Blue",
-        "required": true
-    },
-    "size": {
-        "name": "size",
-        "description": "size",
-        "type": "String",
-        "direction": "IN",
-        "value": "XL",
-        "required": true
-    },
-    "below_price": {
-        "name": "below_price",
-        "description": "below_price",
-        "type": "Float",
-        "direction": "IN",
-        "value": "17",
-        "required": true
-    },
-    "above_price": {
-        "name": "above_price",
-        "description": "above_price",
-        "type": "Float",
-        "direction": "IN",
-        "value": "50",
-        "required": true
-    },
-    "quantity": {
-        "name": "quantity",
-        "description": "quantity",
-        "type": "Int",
-        "direction": "IN",
-        "value": "3",
+        "value": ["thesonpham120499@gmail.com", "lailatobine@gmail.com"],
         "required": true
     },
     "file_output": {

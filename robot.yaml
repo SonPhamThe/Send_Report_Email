@@ -13,52 +13,17 @@ tasks:
       - tasks.robot
 arguments:
   input:
-    - name: category
-      type: String
-      required: True
-      defaultValue:
-      description: Category
-    - name: wearables
-      type: String
-      required: True
-      defaultValue:
-      description: Wearables
-    - name: product_type
-      type: String
-      required: True
-      defaultValue:
-      description: Product Type
-    - name: color
-      type: String
-      required: True
-      defaultValue:
-      description: Color
-    - name: size
-      type: String
-      required: True
-      defaultValue:
-      description: Size
-    - name: below_price
-      type: String
-      required: True
-      defaultValue:
-      description: Below Price
-    - name: above_price
-      type: String
-      required: True
-      defaultValue:
-      description: Above Price
-    - name: quantity
-      type: String
-      required: True
-      defaultValue:
-      description: Quantity
-  output:
     - name: file_output
       type: File
       required: True
       defaultValue:
       description: File output
+    - name: recipients_email_address
+      type: List
+      required: True
+      defaultValue:
+      description: List recipients email address
+  output:
 
 condaConfigFile: conda.yaml
 environmentConfigs:

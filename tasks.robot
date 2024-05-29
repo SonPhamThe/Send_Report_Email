@@ -10,7 +10,7 @@ Library             OperatingSystem
 Library             RPA.Excel.Files
 Library             String
 Library             ConvertStringToPrice
-Library    RPA.JSON
+Library             RPA.JSON
 
 
 *** Variables ***
@@ -29,7 +29,7 @@ Send Email
     ${gmail_account_credentials}=    Convert String to JSON    ${gmail_account_credentials}
     ${username}=    Set Variable    ${gmail_account_credentials}[username]
     ${password}=    Set Variable    ${gmail_account_credentials}[password]
-    
+
     Authorize    account=${username}    password=${password}
 
     ${recipients}=    Get In Arg    recipients_email_address

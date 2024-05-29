@@ -1,16 +1,19 @@
+# For more details on the format and content:
+# https://github.com/robocorp/rcc/blob/master/docs/recipes.md#what-is-in-robotyaml
+
 tasks:
-  Web store purchased:
-    command:
-      - python
-      - -m
-      - robot
-      - --report
-      - NONE
-      - -d
-      - output
-      - --logtitle
-      - Task log
-      - tasks.robot
+  # Task names here are used when executing the bots, renaming these is recommended.
+  Run all tasks:
+    shell: python -m robot --report NONE --outputdir output --logtitle "Task log" tasks.robot
+
+condaConfigFile: conda.yaml
+
+environmentConfigs:
+  - environment_windows_amd64_freeze.yaml
+  - environment_linux_amd64_freeze.yaml
+  - environment_darwin_amd64_freeze.yaml
+  - conda.yaml
+
 arguments:
   input:
     - name: file_output
@@ -18,6 +21,11 @@ arguments:
       required: True
       defaultValue:
       description: File output
+    - name: recipients_email_address
+      type: List
+      required: True
+      defaultValue:
+      description: List recipients email address
   output:
     - name: output_send_result
       type: Boolean
@@ -25,17 +33,12 @@ arguments:
       defaultValue:
       description: Status send result report via email
 
-condaConfigFile: conda.yaml
-environmentConfigs:
-  - environment_windows_amd64_freeze.yaml
-  - environment_linux_amd64_freeze.yaml
-  - environment_darwin_amd64_freeze.yaml
-  - conda.yaml
-artifactsDir: output
-ignoreFiles:
-  - .gitignore
+artifactsDir: output  
+
 PATH:
   - .
 PYTHONPATH:
   - .
   - libraries
+ignoreFiles:
+  - .gitignore

@@ -18,19 +18,19 @@ arguments:
   input:
     - name: file_output
       type: File
-      required: True
-      defaultValue:
+      required: true
+      defaultValue: null
       description: File input information product purchased
     - name: recipients_email_address
       type: List
-      required: True
-      defaultValue:
+      required: true
+      defaultValue: null
       description: List recipients email address to send
   output:
     - name: output_send_result
       type: Boolean
-      required: True
-      defaultValue:
+      required: true
+      defaultValue: null
       description: Status send result report via email
 
 artifactsDir: output  
@@ -40,5 +40,6 @@ PATH:
 PYTHONPATH:
   - .
   - libraries
+
 ignoreFiles:
   - .gitignore

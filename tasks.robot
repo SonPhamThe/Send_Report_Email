@@ -77,7 +77,7 @@ Send Email
 
     Create File    ${TEXT_BODY_FILE}    ${email_body}
 
-    Send Message    sender=${username}
+    RPA.Email.ImapSmtp.Send Message    sender=${username}
     ...    recipients=${list_recipient}
     ...    subject=Send Result Report Via Email By Infomation Of Product Magento
     ...    body=${email_body}

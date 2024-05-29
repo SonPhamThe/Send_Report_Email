@@ -25,7 +25,7 @@ ${where_buy_value}                      "Magento Website"
 *** Tasks ***
 Send Email
     [Documentation]    Send Result Report Via Email To Recipients Address Email
-    
+
     ${gmail_account_credentials}=    Get Asset    gmail_account
     ${gmail_account_credentials}=    Set Variable    ${gmail_account_credentials}[value]
     ${gmail_account_credentials}=    Convert String to JSON    ${gmail_account_credentials}

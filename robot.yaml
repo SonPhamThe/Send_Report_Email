@@ -17,12 +17,12 @@ arguments:
       type: File
       required: True
       defaultValue:
-      description: File output
+      description: File input information product purchased
     - name: recipients_email_address
       type: List
       required: True
       defaultValue:
-      description: List recipients email address
+      description: List recipients email address to send
   output:
     - name: output_send_result
       type: Boolean

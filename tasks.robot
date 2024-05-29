@@ -36,6 +36,11 @@ Send Email
 
     ${recipients}=    Get In Arg    recipients_email_address
     ${recipients_value}=    Set Variable    ${recipients}[value]
+    ${recipient_value_list}=    Split String    ${recipients_value}    ,
+    @{list_recipient}=    Create List    
+    FOR    ${recipient}    IN    @{recipient_value_list}
+        Append To List    ${list_recipient}    ${recipient}
+    END
 
     ${url_file_excel}=    Get In Arg    file_output
     ${url_file_excel_value}=    Set Variable    ${url_file_excel}[value]
@@ -73,7 +78,7 @@ Send Email
     Create File    ${TEXT_BODY_FILE}    ${email_body}
 
     Send Message    sender=${username}
-    ...    recipients=${recipients_value}
+    ...    recipients=${list_recipient}
     ...    subject=Send Result Report Via Email By Infomation Of Product Magento
     ...    body=${email_body}
     ...    attachments=${url_file_excel_value}

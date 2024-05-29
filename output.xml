@@ -1,105 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.1.1 (Python 3.9.13 on win32)" generated="20240529 09:39:01.048" rpa="true" schemaversion="4">
+<robot generator="Robot 6.1.1 (Python 3.9.13 on win32)" generated="20240529 13:59:14.344" rpa="true" schemaversion="4">
 <suite id="s1" name="Tasks" source="c:\Send Result Report Via Email\tasks.robot">
-<test id="s1-t1" name="Send Email" line="25">
+<test id="s1-t1" name="Send Email" line="26">
 <kw name="Get Asset" library="DOP.RPA.Asset">
 <var>${gmail_account_credentials}</var>
 <arg>gmail_account</arg>
 <doc>Read a asset from the configured source, e.g. DOP RPA Asset,
 and return it as a ``AssetData`` object.</doc>
-<msg timestamp="20240529 09:39:01.694" level="INFO">Resolving path: devdata\assets.json</msg>
-<msg timestamp="20240529 09:39:01.698" level="INFO">${gmail_account_credentials} = {'key': 'gmail_account', 'name': 'gmail_account', 'asset_type': &lt;AssetDataType.TEXT: 'TEXT'&gt;, 'value': {'username': 'thesonpham120499@gmail.com', 'password': 'dmvncqpblwjamezw'}}</msg>
-<status status="PASS" starttime="20240529 09:39:01.694" endtime="20240529 09:39:01.698"/>
+<msg timestamp="20240529 13:59:15.061" level="INFO">Resolving path: devdata\assets.json</msg>
+<msg timestamp="20240529 13:59:15.064" level="INFO">${gmail_account_credentials} = {'key': 'gmail_account', 'name': 'gmail_account', 'asset_type': &lt;AssetDataType.TEXT: 'TEXT'&gt;, 'value': {'username': 'thesonpham120499@gmail.com', 'password': 'dmvncqpblwjamezw'}}</msg>
+<status status="PASS" starttime="20240529 13:59:15.060" endtime="20240529 13:59:15.064"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${gmail_account_credentials}</var>
 <arg>${gmail_account_credentials}[value]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240529 09:39:01.699" level="INFO">${gmail_account_credentials} = {'username': 'thesonpham120499@gmail.com', 'password': 'dmvncqpblwjamezw'}</msg>
-<status status="PASS" starttime="20240529 09:39:01.698" endtime="20240529 09:39:01.699"/>
+<msg timestamp="20240529 13:59:15.066" level="INFO">${gmail_account_credentials} = {'username': 'thesonpham120499@gmail.com', 'password': 'dmvncqpblwjamezw'}</msg>
+<status status="PASS" starttime="20240529 13:59:15.066" endtime="20240529 13:59:15.067"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${username}</var>
 <arg>${gmail_account_credentials}[username]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240529 09:39:01.700" level="INFO">${username} = thesonpham120499@gmail.com</msg>
-<status status="PASS" starttime="20240529 09:39:01.700" endtime="20240529 09:39:01.700"/>
+<msg timestamp="20240529 13:59:15.068" level="INFO">${username} = thesonpham120499@gmail.com</msg>
+<status status="PASS" starttime="20240529 13:59:15.067" endtime="20240529 13:59:15.068"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${password}</var>
 <arg>${gmail_account_credentials}[password]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240529 09:39:01.702" level="INFO">${password} = dmvncqpblwjamezw</msg>
-<status status="PASS" starttime="20240529 09:39:01.701" endtime="20240529 09:39:01.702"/>
+<msg timestamp="20240529 13:59:15.070" level="INFO">${password} = dmvncqpblwjamezw</msg>
+<status status="PASS" starttime="20240529 13:59:15.069" endtime="20240529 13:59:15.070"/>
 </kw>
 <kw name="Authorize" library="RPA.Email.ImapSmtp">
 <arg>account=${username}</arg>
 <arg>password=${password}</arg>
 <doc>Authorize user to SMTP and IMAP servers.</doc>
-<msg timestamp="20240529 09:39:01.703" level="INFO">Protecting keyword: RPA.Email.ImapSmtp.Authorize</msg>
-<msg timestamp="20240529 09:39:05.282" level="INFO">Log level changed from NONE to INFO.</msg>
-<status status="PASS" starttime="20240529 09:39:01.703" endtime="20240529 09:39:05.282"/>
+<msg timestamp="20240529 13:59:15.072" level="INFO">Protecting keyword: RPA.Email.ImapSmtp.Authorize</msg>
+<msg timestamp="20240529 13:59:18.629" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20240529 13:59:15.071" endtime="20240529 13:59:18.629"/>
 </kw>
 <kw name="Get In Arg" library="DOP.RPA.ProcessArgument">
 <var>${recipients}</var>
 <arg>recipients_email_address</arg>
-<msg timestamp="20240529 09:39:05.284" level="INFO">Resolving path: devdata\args.json</msg>
-<msg timestamp="20240529 09:39:05.284" level="INFO">${recipients} = {'name': 'recipients_email_address', 'description': 'recipients email address ', 'type': 'List', 'direction': 'IN', 'value': ['thesonpham120499@gmail.com', 'lailatobine@gmail.com'], 'required': True}</msg>
-<status status="PASS" starttime="20240529 09:39:05.283" endtime="20240529 09:39:05.285"/>
+<msg timestamp="20240529 13:59:18.631" level="INFO">Resolving path: devdata\args.json</msg>
+<msg timestamp="20240529 13:59:18.631" level="INFO">${recipients} = {'name': 'recipients_email_address', 'description': 'recipients email address ', 'type': 'String', 'direction': 'IN', 'value': 'thesonpham120499@gmail.com, lailatobine@gmail.com', 'required': True}</msg>
+<status status="PASS" starttime="20240529 13:59:18.630" endtime="20240529 13:59:18.632"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${recipients_value}</var>
 <arg>${recipients}[value]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240529 09:39:05.287" level="INFO">${recipients_value} = ['thesonpham120499@gmail.com', 'lailatobine@gmail.com']</msg>
-<status status="PASS" starttime="20240529 09:39:05.286" endtime="20240529 09:39:05.287"/>
+<msg timestamp="20240529 13:59:18.634" level="INFO">${recipients_value} = thesonpham120499@gmail.com, lailatobine@gmail.com</msg>
+<status status="PASS" starttime="20240529 13:59:18.633" endtime="20240529 13:59:18.634"/>
 </kw>
+<kw name="Split String" library="String">
+<var>${recipient_value_list}</var>
+<arg>${recipients_value}</arg>
+<arg>,</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<msg timestamp="20240529 13:59:18.636" level="INFO">${recipient_value_list} = ['thesonpham120499@gmail.com', ' lailatobine@gmail.com']</msg>
+<status status="PASS" starttime="20240529 13:59:18.635" endtime="20240529 13:59:18.636"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>@{list_recipient}</var>
+<doc>Returns a list containing given items.</doc>
+<msg timestamp="20240529 13:59:18.638" level="INFO">@{list_recipient} = [ ]</msg>
+<status status="PASS" starttime="20240529 13:59:18.637" endtime="20240529 13:59:18.638"/>
+</kw>
+<for flavor="IN">
+<var>${recipient}</var>
+<value>@{recipient_value_list}</value>
+<iter>
+<var name="${recipient}">thesonpham120499@gmail.com</var>
+<kw name="Append To List" library="Collections">
+<arg>${list_recipient}</arg>
+<arg>${recipient}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" starttime="20240529 13:59:18.641" endtime="20240529 13:59:18.642"/>
+</kw>
+<status status="PASS" starttime="20240529 13:59:18.640" endtime="20240529 13:59:18.642"/>
+</iter>
+<iter>
+<var name="${recipient}"> lailatobine@gmail.com</var>
+<kw name="Append To List" library="Collections">
+<arg>${list_recipient}</arg>
+<arg>${recipient}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" starttime="20240529 13:59:18.643" endtime="20240529 13:59:18.644"/>
+</kw>
+<status status="PASS" starttime="20240529 13:59:18.643" endtime="20240529 13:59:18.644"/>
+</iter>
+<status status="PASS" starttime="20240529 13:59:18.639" endtime="20240529 13:59:18.644"/>
+</for>
 <kw name="Get In Arg" library="DOP.RPA.ProcessArgument">
 <var>${url_file_excel}</var>
 <arg>file_output</arg>
-<msg timestamp="20240529 09:39:05.288" level="INFO">${url_file_excel} = {'name': 'file_output', 'description': 'file_output ', 'type': 'File', 'direction': 'OUT', 'value': 'd:\\Magento_Website_Robot/data_magento.xlsx', 'required': True}</msg>
-<status status="PASS" starttime="20240529 09:39:05.288" endtime="20240529 09:39:05.288"/>
+<msg timestamp="20240529 13:59:18.646" level="INFO">${url_file_excel} = {'name': 'file_output', 'description': 'file_output ', 'type': 'File', 'direction': 'OUT', 'value': 'd:\\Magento_Website_Robot/data_magento.xlsx', 'required': True}</msg>
+<status status="PASS" starttime="20240529 13:59:18.645" endtime="20240529 13:59:18.646"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${url_file_excel_value}</var>
 <arg>${url_file_excel}[value]</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240529 09:39:05.290" level="INFO">${url_file_excel_value} = d:\Magento_Website_Robot/data_magento.xlsx</msg>
-<status status="PASS" starttime="20240529 09:39:05.289" endtime="20240529 09:39:05.290"/>
+<msg timestamp="20240529 13:59:18.648" level="INFO">${url_file_excel_value} = d:\Magento_Website_Robot/data_magento.xlsx</msg>
+<status status="PASS" starttime="20240529 13:59:18.647" endtime="20240529 13:59:18.648"/>
 </kw>
 <kw name="Open Workbook" library="RPA.Excel.Files">
 <arg>${url_file_excel_value}</arg>
 <doc>Open an existing Excel workbook.</doc>
-<msg timestamp="20240529 09:39:05.301" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x00000212A543D100&gt;</msg>
-<status status="PASS" starttime="20240529 09:39:05.291" endtime="20240529 09:39:05.302"/>
+<msg timestamp="20240529 13:59:18.665" level="INFO">Opened workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000029B1CB35340&gt;</msg>
+<status status="PASS" starttime="20240529 13:59:18.649" endtime="20240529 13:59:18.665"/>
 </kw>
 <kw name="Read Worksheet As Table" library="RPA.Excel.Files">
 <var>${excel_data}</var>
 <arg>header=True</arg>
 <doc>Read the contents of a worksheet into a Table container. Allows
 sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
-<msg timestamp="20240529 09:39:05.304" level="INFO">Created table: Table(columns=['Name', 'Quantity', 'Price', 'Order Number', 'Size', 'Color', 'Time'], rows=17)</msg>
-<msg timestamp="20240529 09:39:05.304" level="INFO">${excel_data} = Table(columns=['Name', 'Quantity', 'Price', 'Order Number', 'Size', 'Color', 'Time'], rows=17)</msg>
-<status status="PASS" starttime="20240529 09:39:05.302" endtime="20240529 09:39:05.305"/>
+<msg timestamp="20240529 13:59:18.668" level="INFO">Created table: Table(columns=['Name', 'Quantity', 'Price', 'Order Number', 'Size', 'Color', 'Time'], rows=17)</msg>
+<msg timestamp="20240529 13:59:18.670" level="INFO">${excel_data} = Table(columns=['Name', 'Quantity', 'Price', 'Order Number', 'Size', 'Color', 'Time'], rows=17)</msg>
+<status status="PASS" starttime="20240529 13:59:18.666" endtime="20240529 13:59:18.670"/>
 </kw>
 <kw name="Close Workbook" library="RPA.Excel.Files">
 <doc>Close the active workbook.</doc>
-<msg timestamp="20240529 09:39:05.306" level="INFO">Closing workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x00000212A543D100&gt;</msg>
-<status status="PASS" starttime="20240529 09:39:05.305" endtime="20240529 09:39:05.306"/>
+<msg timestamp="20240529 13:59:18.715" level="INFO">Closing workbook: &lt;RPA.Excel.Files.XlsxWorkbook object at 0x0000029B1CB35340&gt;</msg>
+<status status="PASS" starttime="20240529 13:59:18.714" endtime="20240529 13:59:18.715"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>0</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240529 09:39:05.307" level="INFO">${quantity_product} = 0</msg>
-<status status="PASS" starttime="20240529 09:39:05.307" endtime="20240529 09:39:05.307"/>
+<msg timestamp="20240529 13:59:18.717" level="INFO">${quantity_product} = 0</msg>
+<status status="PASS" starttime="20240529 13:59:18.716" endtime="20240529 13:59:18.717"/>
 </kw>
 <kw name="Set Variable" library="BuiltIn">
 <var>${price_product}</var>
 <arg>0</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240529 09:39:05.308" level="INFO">${price_product} = 0</msg>
-<status status="PASS" starttime="20240529 09:39:05.308" endtime="20240529 09:39:05.308"/>
+<msg timestamp="20240529 13:59:18.719" level="INFO">${price_product} = 0</msg>
+<status status="PASS" starttime="20240529 13:59:18.718" endtime="20240529 13:59:18.719"/>
 </kw>
 <for flavor="IN">
 <var>${excel}</var>
@@ -111,53 +150,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.311" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.310" endtime="20240529 09:39:05.311"/>
+<msg timestamp="20240529 13:59:18.723" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.722" endtime="20240529 13:59:18.724"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.312" level="INFO">${price} = $18.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.311" endtime="20240529 09:39:05.312"/>
+<msg timestamp="20240529 13:59:18.726" level="INFO">${price} = $18.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.724" endtime="20240529 13:59:18.726"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.313" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.312" endtime="20240529 09:39:05.313"/>
+<msg timestamp="20240529 13:59:18.727" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.726" endtime="20240529 13:59:18.727"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.314" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.313" endtime="20240529 09:39:05.314"/>
+<msg timestamp="20240529 13:59:18.728" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.728" endtime="20240529 13:59:18.729"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.315" level="INFO">${price_value} = 18.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.314" endtime="20240529 09:39:05.315"/>
+<msg timestamp="20240529 13:59:18.730" level="INFO">${price_value} = 18.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.729" endtime="20240529 13:59:18.730"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.316" level="INFO">${quantity_product} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.315" endtime="20240529 09:39:05.316"/>
+<msg timestamp="20240529 13:59:18.732" level="INFO">${quantity_product} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.730" endtime="20240529 13:59:18.732"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.317" level="INFO">${price_product} = 18.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.316" endtime="20240529 09:39:05.317"/>
+<msg timestamp="20240529 13:59:18.734" level="INFO">${price_product} = 18.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.733" endtime="20240529 13:59:18.734"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.310" endtime="20240529 09:39:05.317"/>
+<status status="PASS" starttime="20240529 13:59:18.721" endtime="20240529 13:59:18.734"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Atlas Fitness Tank', 'Quantity': '3', 'Price': '$18.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -166,53 +205,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.318" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.318" endtime="20240529 09:39:05.318"/>
+<msg timestamp="20240529 13:59:18.736" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.735" endtime="20240529 13:59:18.736"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.319" level="INFO">${price} = $18.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.318" endtime="20240529 09:39:05.319"/>
+<msg timestamp="20240529 13:59:18.738" level="INFO">${price} = $18.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.736" endtime="20240529 13:59:18.738"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.320" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.319" endtime="20240529 09:39:05.320"/>
+<msg timestamp="20240529 13:59:18.739" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.739" endtime="20240529 13:59:18.740"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.321" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.320" endtime="20240529 09:39:05.321"/>
+<msg timestamp="20240529 13:59:18.741" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.740" endtime="20240529 13:59:18.741"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.322" level="INFO">${price_value} = 18.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.322" endtime="20240529 09:39:05.323"/>
+<msg timestamp="20240529 13:59:18.747" level="INFO">${price_value} = 18.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.742" endtime="20240529 13:59:18.748"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.323" level="INFO">${quantity_product} = 6</msg>
-<status status="PASS" starttime="20240529 09:39:05.323" endtime="20240529 09:39:05.324"/>
+<msg timestamp="20240529 13:59:18.756" level="INFO">${quantity_product} = 6</msg>
+<status status="PASS" starttime="20240529 13:59:18.753" endtime="20240529 13:59:18.757"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.324" level="INFO">${price_product} = 36.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.324" endtime="20240529 09:39:05.324"/>
+<msg timestamp="20240529 13:59:18.758" level="INFO">${price_product} = 36.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.757" endtime="20240529 13:59:18.759"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.317" endtime="20240529 09:39:05.325"/>
+<status status="PASS" starttime="20240529 13:59:18.735" endtime="20240529 13:59:18.759"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Sinbad Fitness Tank', 'Quantity': '3', 'Price': '$29.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -221,53 +260,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.325" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.325" endtime="20240529 09:39:05.326"/>
+<msg timestamp="20240529 13:59:18.761" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.760" endtime="20240529 13:59:18.762"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.326" level="INFO">${price} = $29.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.326" endtime="20240529 09:39:05.326"/>
+<msg timestamp="20240529 13:59:18.763" level="INFO">${price} = $29.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.763" endtime="20240529 13:59:18.764"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.327" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.327" endtime="20240529 09:39:05.328"/>
+<msg timestamp="20240529 13:59:18.765" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.764" endtime="20240529 13:59:18.765"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.329" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.328" endtime="20240529 09:39:05.329"/>
+<msg timestamp="20240529 13:59:18.767" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.766" endtime="20240529 13:59:18.767"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.329" level="INFO">${price_value} = 29.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.329" endtime="20240529 09:39:05.330"/>
+<msg timestamp="20240529 13:59:18.769" level="INFO">${price_value} = 29.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.768" endtime="20240529 13:59:18.770"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.330" level="INFO">${quantity_product} = 9</msg>
-<status status="PASS" starttime="20240529 09:39:05.330" endtime="20240529 09:39:05.330"/>
+<msg timestamp="20240529 13:59:18.771" level="INFO">${quantity_product} = 9</msg>
+<status status="PASS" starttime="20240529 13:59:18.770" endtime="20240529 13:59:18.772"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.331" level="INFO">${price_product} = 65.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.331" endtime="20240529 09:39:05.331"/>
+<msg timestamp="20240529 13:59:18.773" level="INFO">${price_product} = 65.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.772" endtime="20240529 13:59:18.773"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.325" endtime="20240529 09:39:05.331"/>
+<status status="PASS" starttime="20240529 13:59:18.759" endtime="20240529 13:59:18.774"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Rocco Gym Tank', 'Quantity': '3', 'Price': '$24.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -276,53 +315,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.332" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.332" endtime="20240529 09:39:05.333"/>
+<msg timestamp="20240529 13:59:18.776" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.775" endtime="20240529 13:59:18.776"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.333" level="INFO">${price} = $24.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.333" endtime="20240529 09:39:05.333"/>
+<msg timestamp="20240529 13:59:18.777" level="INFO">${price} = $24.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.777" endtime="20240529 13:59:18.778"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.335" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.334" endtime="20240529 09:39:05.335"/>
+<msg timestamp="20240529 13:59:18.779" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.778" endtime="20240529 13:59:18.779"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.336" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.336" endtime="20240529 09:39:05.336"/>
+<msg timestamp="20240529 13:59:18.781" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.780" endtime="20240529 13:59:18.782"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.337" level="INFO">${price_value} = 24.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.337" endtime="20240529 09:39:05.337"/>
+<msg timestamp="20240529 13:59:18.783" level="INFO">${price_value} = 24.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.782" endtime="20240529 13:59:18.783"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.338" level="INFO">${quantity_product} = 12</msg>
-<status status="PASS" starttime="20240529 09:39:05.337" endtime="20240529 09:39:05.338"/>
+<msg timestamp="20240529 13:59:18.785" level="INFO">${quantity_product} = 12</msg>
+<status status="PASS" starttime="20240529 13:59:18.784" endtime="20240529 13:59:18.785"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.339" level="INFO">${price_product} = 89.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.338" endtime="20240529 09:39:05.339"/>
+<msg timestamp="20240529 13:59:18.787" level="INFO">${price_product} = 89.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.786" endtime="20240529 13:59:18.787"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.332" endtime="20240529 09:39:05.339"/>
+<status status="PASS" starttime="20240529 13:59:18.775" endtime="20240529 13:59:18.788"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Helios Endurance Tank', 'Quantity': '3', 'Price': '$32.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -331,53 +370,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.340" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.340" endtime="20240529 09:39:05.341"/>
+<msg timestamp="20240529 13:59:18.789" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.789" endtime="20240529 13:59:18.789"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.342" level="INFO">${price} = $32.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.341" endtime="20240529 09:39:05.342"/>
+<msg timestamp="20240529 13:59:18.790" level="INFO">${price} = $32.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.790" endtime="20240529 13:59:18.790"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.343" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.342" endtime="20240529 09:39:05.343"/>
+<msg timestamp="20240529 13:59:18.791" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.790" endtime="20240529 13:59:18.791"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.344" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.343" endtime="20240529 09:39:05.344"/>
+<msg timestamp="20240529 13:59:18.792" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.791" endtime="20240529 13:59:18.793"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.345" level="INFO">${price_value} = 32.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.345" endtime="20240529 09:39:05.345"/>
+<msg timestamp="20240529 13:59:18.794" level="INFO">${price_value} = 32.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.793" endtime="20240529 13:59:18.794"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.346" level="INFO">${quantity_product} = 15</msg>
-<status status="PASS" starttime="20240529 09:39:05.346" endtime="20240529 09:39:05.347"/>
+<msg timestamp="20240529 13:59:18.795" level="INFO">${quantity_product} = 15</msg>
+<status status="PASS" starttime="20240529 13:59:18.794" endtime="20240529 13:59:18.795"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.347" level="INFO">${price_product} = 121.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.347" endtime="20240529 09:39:05.347"/>
+<msg timestamp="20240529 13:59:18.795" level="INFO">${price_product} = 121.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.795" endtime="20240529 13:59:18.795"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.339" endtime="20240529 09:39:05.348"/>
+<status status="PASS" starttime="20240529 13:59:18.788" endtime="20240529 13:59:18.796"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Primo Endurance Tank', 'Quantity': '3', 'Price': '$29.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -386,53 +425,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.349" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.348" endtime="20240529 09:39:05.349"/>
+<msg timestamp="20240529 13:59:18.797" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.796" endtime="20240529 13:59:18.797"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.349" level="INFO">${price} = $29.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.349" endtime="20240529 09:39:05.349"/>
+<msg timestamp="20240529 13:59:18.798" level="INFO">${price} = $29.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.797" endtime="20240529 13:59:18.798"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.350" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.350" endtime="20240529 09:39:05.350"/>
+<msg timestamp="20240529 13:59:18.799" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.799" endtime="20240529 13:59:18.800"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.351" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.350" endtime="20240529 09:39:05.351"/>
+<msg timestamp="20240529 13:59:18.801" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.801" endtime="20240529 13:59:18.802"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.352" level="INFO">${price_value} = 29.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.351" endtime="20240529 09:39:05.352"/>
+<msg timestamp="20240529 13:59:18.803" level="INFO">${price_value} = 29.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.802" endtime="20240529 13:59:18.803"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.353" level="INFO">${quantity_product} = 18</msg>
-<status status="PASS" starttime="20240529 09:39:05.353" endtime="20240529 09:39:05.354"/>
+<msg timestamp="20240529 13:59:18.805" level="INFO">${quantity_product} = 18</msg>
+<status status="PASS" starttime="20240529 13:59:18.804" endtime="20240529 13:59:18.805"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.354" level="INFO">${price_product} = 150.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.354" endtime="20240529 09:39:05.355"/>
+<msg timestamp="20240529 13:59:18.806" level="INFO">${price_product} = 150.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.806" endtime="20240529 13:59:18.807"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.348" endtime="20240529 09:39:05.355"/>
+<status status="PASS" starttime="20240529 13:59:18.796" endtime="20240529 13:59:18.807"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Strike Endurance Tee', 'Quantity': '3', 'Price': '$39.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -441,53 +480,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.356" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.355" endtime="20240529 09:39:05.356"/>
+<msg timestamp="20240529 13:59:18.808" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.808" endtime="20240529 13:59:18.809"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.357" level="INFO">${price} = $39.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.356" endtime="20240529 09:39:05.357"/>
+<msg timestamp="20240529 13:59:18.810" level="INFO">${price} = $39.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.809" endtime="20240529 13:59:18.810"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.358" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.357" endtime="20240529 09:39:05.359"/>
+<msg timestamp="20240529 13:59:18.811" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.811" endtime="20240529 13:59:18.811"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.359" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.359" endtime="20240529 09:39:05.359"/>
+<msg timestamp="20240529 13:59:18.812" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.812" endtime="20240529 13:59:18.812"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.360" level="INFO">${price_value} = 39.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.360" endtime="20240529 09:39:05.360"/>
+<msg timestamp="20240529 13:59:18.813" level="INFO">${price_value} = 39.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.813" endtime="20240529 13:59:18.813"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.361" level="INFO">${quantity_product} = 21</msg>
-<status status="PASS" starttime="20240529 09:39:05.360" endtime="20240529 09:39:05.361"/>
+<msg timestamp="20240529 13:59:18.814" level="INFO">${quantity_product} = 21</msg>
+<status status="PASS" starttime="20240529 13:59:18.814" endtime="20240529 13:59:18.814"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.362" level="INFO">${price_product} = 189.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.361" endtime="20240529 09:39:05.362"/>
+<msg timestamp="20240529 13:59:18.815" level="INFO">${price_product} = 189.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.814" endtime="20240529 13:59:18.815"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.355" endtime="20240529 09:39:05.362"/>
+<status status="PASS" starttime="20240529 13:59:18.807" endtime="20240529 13:59:18.815"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Logan HeatTec® Tee', 'Quantity': '3', 'Price': '$24.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -496,53 +535,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.363" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.362" endtime="20240529 09:39:05.363"/>
+<msg timestamp="20240529 13:59:18.817" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.816" endtime="20240529 13:59:18.817"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.363" level="INFO">${price} = $24.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.363" endtime="20240529 09:39:05.364"/>
+<msg timestamp="20240529 13:59:18.818" level="INFO">${price} = $24.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.817" endtime="20240529 13:59:18.818"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.365" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.364" endtime="20240529 09:39:05.365"/>
+<msg timestamp="20240529 13:59:18.819" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.818" endtime="20240529 13:59:18.819"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.365" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.365" endtime="20240529 09:39:05.366"/>
+<msg timestamp="20240529 13:59:18.820" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.819" endtime="20240529 13:59:18.820"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.366" level="INFO">${price_value} = 24.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.366" endtime="20240529 09:39:05.366"/>
+<msg timestamp="20240529 13:59:18.820" level="INFO">${price_value} = 24.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.820" endtime="20240529 13:59:18.820"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.367" level="INFO">${quantity_product} = 24</msg>
-<status status="PASS" starttime="20240529 09:39:05.367" endtime="20240529 09:39:05.367"/>
+<msg timestamp="20240529 13:59:18.822" level="INFO">${quantity_product} = 24</msg>
+<status status="PASS" starttime="20240529 13:59:18.821" endtime="20240529 13:59:18.822"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.368" level="INFO">${price_product} = 213.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.368" endtime="20240529 09:39:05.368"/>
+<msg timestamp="20240529 13:59:18.823" level="INFO">${price_product} = 213.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.823" endtime="20240529 13:59:18.823"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.362" endtime="20240529 09:39:05.368"/>
+<status status="PASS" starttime="20240529 13:59:18.815" endtime="20240529 13:59:18.823"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Ryker LumaTech™ Tee (V-neck)', 'Quantity': '3', 'Price': '$28.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -551,53 +590,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.369" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.369" endtime="20240529 09:39:05.369"/>
+<msg timestamp="20240529 13:59:18.824" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.824" endtime="20240529 13:59:18.825"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.370" level="INFO">${price} = $28.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.369" endtime="20240529 09:39:05.370"/>
+<msg timestamp="20240529 13:59:18.825" level="INFO">${price} = $28.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.825" endtime="20240529 13:59:18.825"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.371" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.370" endtime="20240529 09:39:05.371"/>
+<msg timestamp="20240529 13:59:18.826" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.826" endtime="20240529 13:59:18.826"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.372" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.371" endtime="20240529 09:39:05.372"/>
+<msg timestamp="20240529 13:59:18.828" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.826" endtime="20240529 13:59:18.829"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.373" level="INFO">${price_value} = 28.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.373" endtime="20240529 09:39:05.373"/>
+<msg timestamp="20240529 13:59:18.829" level="INFO">${price_value} = 28.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.829" endtime="20240529 13:59:18.829"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.374" level="INFO">${quantity_product} = 27</msg>
-<status status="PASS" starttime="20240529 09:39:05.374" endtime="20240529 09:39:05.374"/>
+<msg timestamp="20240529 13:59:18.830" level="INFO">${quantity_product} = 27</msg>
+<status status="PASS" starttime="20240529 13:59:18.830" endtime="20240529 13:59:18.830"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.375" level="INFO">${price_product} = 241.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.374" endtime="20240529 09:39:05.375"/>
+<msg timestamp="20240529 13:59:18.831" level="INFO">${price_product} = 241.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.831" endtime="20240529 13:59:18.831"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.369" endtime="20240529 09:39:05.376"/>
+<status status="PASS" starttime="20240529 13:59:18.824" endtime="20240529 13:59:18.832"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Zoltan Gym Tee', 'Quantity': '3', 'Price': '$29.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -606,53 +645,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.377" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.376" endtime="20240529 09:39:05.377"/>
+<msg timestamp="20240529 13:59:18.833" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.832" endtime="20240529 13:59:18.833"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.377" level="INFO">${price} = $29.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.377" endtime="20240529 09:39:05.378"/>
+<msg timestamp="20240529 13:59:18.834" level="INFO">${price} = $29.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.834" endtime="20240529 13:59:18.835"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.378" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.378" endtime="20240529 09:39:05.378"/>
+<msg timestamp="20240529 13:59:18.836" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.835" endtime="20240529 13:59:18.836"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.379" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.378" endtime="20240529 09:39:05.379"/>
+<msg timestamp="20240529 13:59:18.837" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.836" endtime="20240529 13:59:18.837"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.380" level="INFO">${price_value} = 29.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.379" endtime="20240529 09:39:05.380"/>
+<msg timestamp="20240529 13:59:18.838" level="INFO">${price_value} = 29.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.838" endtime="20240529 13:59:18.838"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.380" level="INFO">${quantity_product} = 30</msg>
-<status status="PASS" starttime="20240529 09:39:05.380" endtime="20240529 09:39:05.380"/>
+<msg timestamp="20240529 13:59:18.840" level="INFO">${quantity_product} = 30</msg>
+<status status="PASS" starttime="20240529 13:59:18.839" endtime="20240529 13:59:18.840"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.381" level="INFO">${price_product} = 270.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.381" endtime="20240529 09:39:05.382"/>
+<msg timestamp="20240529 13:59:18.841" level="INFO">${price_product} = 270.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.840" endtime="20240529 13:59:18.841"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.376" endtime="20240529 09:39:05.382"/>
+<status status="PASS" starttime="20240529 13:59:18.832" endtime="20240529 13:59:18.841"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Atomic Endurance Running Tee (Crew-Neck)', 'Quantity': '3', 'Price': '$29.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -661,53 +700,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.384" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.383" endtime="20240529 09:39:05.384"/>
+<msg timestamp="20240529 13:59:18.842" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.842" endtime="20240529 13:59:18.842"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.385" level="INFO">${price} = $29.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.384" endtime="20240529 09:39:05.386"/>
+<msg timestamp="20240529 13:59:18.843" level="INFO">${price} = $29.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.842" endtime="20240529 13:59:18.843"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.388" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.386" endtime="20240529 09:39:05.388"/>
+<msg timestamp="20240529 13:59:18.843" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.843" endtime="20240529 13:59:18.843"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.389" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.388" endtime="20240529 09:39:05.389"/>
+<msg timestamp="20240529 13:59:18.844" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.844" endtime="20240529 13:59:18.844"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.391" level="INFO">${price_value} = 29.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.390" endtime="20240529 09:39:05.391"/>
+<msg timestamp="20240529 13:59:18.846" level="INFO">${price_value} = 29.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.845" endtime="20240529 13:59:18.846"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.392" level="INFO">${quantity_product} = 33</msg>
-<status status="PASS" starttime="20240529 09:39:05.391" endtime="20240529 09:39:05.392"/>
+<msg timestamp="20240529 13:59:18.847" level="INFO">${quantity_product} = 33</msg>
+<status status="PASS" starttime="20240529 13:59:18.847" endtime="20240529 13:59:18.847"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.394" level="INFO">${price_product} = 299.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.393" endtime="20240529 09:39:05.394"/>
+<msg timestamp="20240529 13:59:18.848" level="INFO">${price_product} = 299.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.848" endtime="20240529 13:59:18.848"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.382" endtime="20240529 09:39:05.395"/>
+<status status="PASS" starttime="20240529 13:59:18.841" endtime="20240529 13:59:18.848"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Atomic Endurance Running Tee (V-neck)', 'Quantity': '3', 'Price': '$28.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -716,53 +755,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.396" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.395" endtime="20240529 09:39:05.396"/>
+<msg timestamp="20240529 13:59:18.849" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.849" endtime="20240529 13:59:18.849"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.398" level="INFO">${price} = $28.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.397" endtime="20240529 09:39:05.398"/>
+<msg timestamp="20240529 13:59:18.850" level="INFO">${price} = $28.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.850" endtime="20240529 13:59:18.851"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.400" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.398" endtime="20240529 09:39:05.401"/>
+<msg timestamp="20240529 13:59:18.852" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.851" endtime="20240529 13:59:18.852"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.402" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.401" endtime="20240529 09:39:05.402"/>
+<msg timestamp="20240529 13:59:18.853" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.853" endtime="20240529 13:59:18.854"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.403" level="INFO">${price_value} = 28.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.403" endtime="20240529 09:39:05.403"/>
+<msg timestamp="20240529 13:59:18.855" level="INFO">${price_value} = 28.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.854" endtime="20240529 13:59:18.855"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.405" level="INFO">${quantity_product} = 36</msg>
-<status status="PASS" starttime="20240529 09:39:05.404" endtime="20240529 09:39:05.405"/>
+<msg timestamp="20240529 13:59:18.856" level="INFO">${quantity_product} = 36</msg>
+<status status="PASS" starttime="20240529 13:59:18.855" endtime="20240529 13:59:18.856"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.408" level="INFO">${price_product} = 327.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.406" endtime="20240529 09:39:05.408"/>
+<msg timestamp="20240529 13:59:18.857" level="INFO">${price_product} = 327.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.856" endtime="20240529 13:59:18.857"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.395" endtime="20240529 09:39:05.408"/>
+<status status="PASS" starttime="20240529 13:59:18.849" endtime="20240529 13:59:18.858"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Ryker LumaTech™ Tee (Crew-neck)', 'Quantity': '3', 'Price': '$32.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -771,53 +810,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.410" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.409" endtime="20240529 09:39:05.410"/>
+<msg timestamp="20240529 13:59:18.860" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.859" endtime="20240529 13:59:18.860"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.411" level="INFO">${price} = $32.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.411" endtime="20240529 09:39:05.412"/>
+<msg timestamp="20240529 13:59:18.861" level="INFO">${price} = $32.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.860" endtime="20240529 13:59:18.861"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.413" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.413" endtime="20240529 09:39:05.413"/>
+<msg timestamp="20240529 13:59:18.862" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.862" endtime="20240529 13:59:18.862"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.414" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.414" endtime="20240529 09:39:05.414"/>
+<msg timestamp="20240529 13:59:18.863" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.863" endtime="20240529 13:59:18.863"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.415" level="INFO">${price_value} = 32.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.415" endtime="20240529 09:39:05.415"/>
+<msg timestamp="20240529 13:59:18.865" level="INFO">${price_value} = 32.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.864" endtime="20240529 13:59:18.865"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.416" level="INFO">${quantity_product} = 39</msg>
-<status status="PASS" starttime="20240529 09:39:05.415" endtime="20240529 09:39:05.416"/>
+<msg timestamp="20240529 13:59:18.865" level="INFO">${quantity_product} = 39</msg>
+<status status="PASS" starttime="20240529 13:59:18.865" endtime="20240529 13:59:18.866"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.417" level="INFO">${price_product} = 359.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.416" endtime="20240529 09:39:05.417"/>
+<msg timestamp="20240529 13:59:18.866" level="INFO">${price_product} = 359.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.866" endtime="20240529 13:59:18.866"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.409" endtime="20240529 09:39:05.419"/>
+<status status="PASS" starttime="20240529 13:59:18.858" endtime="20240529 13:59:18.867"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Helios EverCool™ Tee', 'Quantity': '3', 'Price': '$24.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -826,53 +865,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.421" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.420" endtime="20240529 09:39:05.421"/>
+<msg timestamp="20240529 13:59:18.867" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.867" endtime="20240529 13:59:18.868"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.422" level="INFO">${price} = $24.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.421" endtime="20240529 09:39:05.422"/>
+<msg timestamp="20240529 13:59:18.868" level="INFO">${price} = $24.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.868" endtime="20240529 13:59:18.868"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.423" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.423" endtime="20240529 09:39:05.424"/>
+<msg timestamp="20240529 13:59:18.869" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.869" endtime="20240529 13:59:18.869"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.425" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.425" endtime="20240529 09:39:05.425"/>
+<msg timestamp="20240529 13:59:18.871" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.870" endtime="20240529 13:59:18.871"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.426" level="INFO">${price_value} = 24.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.426" endtime="20240529 09:39:05.426"/>
+<msg timestamp="20240529 13:59:18.872" level="INFO">${price_value} = 24.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.871" endtime="20240529 13:59:18.872"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.427" level="INFO">${quantity_product} = 42</msg>
-<status status="PASS" starttime="20240529 09:39:05.426" endtime="20240529 09:39:05.427"/>
+<msg timestamp="20240529 13:59:18.873" level="INFO">${quantity_product} = 42</msg>
+<status status="PASS" starttime="20240529 13:59:18.872" endtime="20240529 13:59:18.873"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.428" level="INFO">${price_product} = 383.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.427" endtime="20240529 09:39:05.428"/>
+<msg timestamp="20240529 13:59:18.874" level="INFO">${price_product} = 383.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.873" endtime="20240529 13:59:18.874"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.419" endtime="20240529 09:39:05.428"/>
+<status status="PASS" starttime="20240529 13:59:18.867" endtime="20240529 13:59:18.874"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Proteus Fitness Jackshirt', 'Quantity': '3', 'Price': '$45.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -881,53 +920,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.429" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.429" endtime="20240529 09:39:05.429"/>
+<msg timestamp="20240529 13:59:18.875" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.874" endtime="20240529 13:59:18.876"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.430" level="INFO">${price} = $45.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.430" endtime="20240529 09:39:05.431"/>
+<msg timestamp="20240529 13:59:18.877" level="INFO">${price} = $45.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.876" endtime="20240529 13:59:18.877"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.431" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.431" endtime="20240529 09:39:05.431"/>
+<msg timestamp="20240529 13:59:18.878" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.877" endtime="20240529 13:59:18.878"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.432" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.432" endtime="20240529 09:39:05.432"/>
+<msg timestamp="20240529 13:59:18.879" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.878" endtime="20240529 13:59:18.879"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.433" level="INFO">${price_value} = 45.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.432" endtime="20240529 09:39:05.433"/>
+<msg timestamp="20240529 13:59:18.879" level="INFO">${price_value} = 45.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.879" endtime="20240529 13:59:18.879"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.434" level="INFO">${quantity_product} = 45</msg>
-<status status="PASS" starttime="20240529 09:39:05.433" endtime="20240529 09:39:05.434"/>
+<msg timestamp="20240529 13:59:18.880" level="INFO">${quantity_product} = 45</msg>
+<status status="PASS" starttime="20240529 13:59:18.880" endtime="20240529 13:59:18.880"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.434" level="INFO">${price_product} = 428.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.434" endtime="20240529 09:39:05.435"/>
+<msg timestamp="20240529 13:59:18.881" level="INFO">${price_product} = 428.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.880" endtime="20240529 13:59:18.881"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.429" endtime="20240529 09:39:05.435"/>
+<status status="PASS" starttime="20240529 13:59:18.874" endtime="20240529 13:59:18.881"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Kenobi Trail Jacket', 'Quantity': '3', 'Price': '$47.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -936,53 +975,53 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.436" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.435" endtime="20240529 09:39:05.436"/>
+<msg timestamp="20240529 13:59:18.883" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.882" endtime="20240529 13:59:18.883"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.437" level="INFO">${price} = $47.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.436" endtime="20240529 09:39:05.437"/>
+<msg timestamp="20240529 13:59:18.884" level="INFO">${price} = $47.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.884" endtime="20240529 13:59:18.884"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.437" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.437" endtime="20240529 09:39:05.438"/>
+<msg timestamp="20240529 13:59:18.885" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.885" endtime="20240529 13:59:18.885"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.438" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.438" endtime="20240529 09:39:05.438"/>
+<msg timestamp="20240529 13:59:18.886" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.886" endtime="20240529 13:59:18.886"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.439" level="INFO">${price_value} = 47.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.439" endtime="20240529 09:39:05.439"/>
+<msg timestamp="20240529 13:59:18.887" level="INFO">${price_value} = 47.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.886" endtime="20240529 13:59:18.887"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.440" level="INFO">${quantity_product} = 48</msg>
-<status status="PASS" starttime="20240529 09:39:05.439" endtime="20240529 09:39:05.440"/>
+<msg timestamp="20240529 13:59:18.888" level="INFO">${quantity_product} = 48</msg>
+<status status="PASS" starttime="20240529 13:59:18.887" endtime="20240529 13:59:18.888"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.440" level="INFO">${price_product} = 475.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.440" endtime="20240529 09:39:05.441"/>
+<msg timestamp="20240529 13:59:18.889" level="INFO">${price_product} = 475.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.889" endtime="20240529 13:59:18.889"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.435" endtime="20240529 09:39:05.441"/>
+<status status="PASS" starttime="20240529 13:59:18.882" endtime="20240529 13:59:18.890"/>
 </iter>
 <iter>
 <var name="${excel}">{'Name': 'Stark Fundamental Hoodie', 'Quantity': '3', 'Price': '$42.00', 'Order Number': '000002745', 'Size': 'XL', 'Color': 'Blue', 'Time': '23:05:19 2024-05-21'}</var>
@@ -991,80 +1030,80 @@ sorting/filtering/manipulating using the ``RPA.Tables`` library.</doc>
 <arg>${excel}</arg>
 <arg>Quantity</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.442" level="INFO">${quantity} = 3</msg>
-<status status="PASS" starttime="20240529 09:39:05.441" endtime="20240529 09:39:05.442"/>
+<msg timestamp="20240529 13:59:18.891" level="INFO">${quantity} = 3</msg>
+<status status="PASS" starttime="20240529 13:59:18.890" endtime="20240529 13:59:18.891"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${price}</var>
 <arg>${excel}</arg>
 <arg>Price</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.443" level="INFO">${price} = $42.00</msg>
-<status status="PASS" starttime="20240529 09:39:05.442" endtime="20240529 09:39:05.443"/>
+<msg timestamp="20240529 13:59:18.891" level="INFO">${price} = $42.00</msg>
+<status status="PASS" starttime="20240529 13:59:18.891" endtime="20240529 13:59:18.891"/>
 </kw>
 <kw name="Get From Dictionary" library="Collections">
 <var>${order_number}</var>
 <arg>${excel}</arg>
 <arg>Order Number</arg>
 <doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
-<msg timestamp="20240529 09:39:05.444" level="INFO">${order_number} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.443" endtime="20240529 09:39:05.444"/>
+<msg timestamp="20240529 13:59:18.892" level="INFO">${order_number} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.892" endtime="20240529 13:59:18.892"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${payment_order_value}</arg>
 <arg>${order_number}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.445" level="INFO">${payment_order_value} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.444" endtime="20240529 09:39:05.445"/>
+<msg timestamp="20240529 13:59:18.893" level="INFO">${payment_order_value} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.892" endtime="20240529 13:59:18.893"/>
 </kw>
 <kw name="Convert String To Price" library="ConvertStringToPrice">
 <var>${price_value}</var>
 <arg>${price}</arg>
-<msg timestamp="20240529 09:39:05.445" level="INFO">${price_value} = 42.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.445" endtime="20240529 09:39:05.445"/>
+<msg timestamp="20240529 13:59:18.895" level="INFO">${price_value} = 42.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.894" endtime="20240529 13:59:18.895"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${quantity_product}</var>
 <arg>${quantity_product} + ${quantity}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.446" level="INFO">${quantity_product} = 51</msg>
-<status status="PASS" starttime="20240529 09:39:05.446" endtime="20240529 09:39:05.446"/>
+<msg timestamp="20240529 13:59:18.896" level="INFO">${quantity_product} = 51</msg>
+<status status="PASS" starttime="20240529 13:59:18.896" endtime="20240529 13:59:18.896"/>
 </kw>
 <kw name="Evaluate" library="BuiltIn">
 <var>${price_product}</var>
 <arg>${price_product} + ${price_value}</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240529 09:39:05.447" level="INFO">${price_product} = 517.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.446" endtime="20240529 09:39:05.447"/>
+<msg timestamp="20240529 13:59:18.897" level="INFO">${price_product} = 517.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.896" endtime="20240529 13:59:18.897"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.441" endtime="20240529 09:39:05.447"/>
+<status status="PASS" starttime="20240529 13:59:18.890" endtime="20240529 13:59:18.897"/>
 </iter>
-<status status="PASS" starttime="20240529 09:39:05.309" endtime="20240529 09:39:05.447"/>
+<status status="PASS" starttime="20240529 13:59:18.720" endtime="20240529 13:59:18.898"/>
 </for>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${total_quantity_purchased_value}</arg>
 <arg>${quantity_product}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.449" level="INFO">${total_quantity_purchased_value} = 51</msg>
-<status status="PASS" starttime="20240529 09:39:05.448" endtime="20240529 09:39:05.449"/>
+<msg timestamp="20240529 13:59:18.899" level="INFO">${total_quantity_purchased_value} = 51</msg>
+<status status="PASS" starttime="20240529 13:59:18.898" endtime="20240529 13:59:18.900"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${total_amount_value}</arg>
 <arg>${price_product}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240529 09:39:05.451" level="INFO">${total_amount_value} = 517.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.450" endtime="20240529 09:39:05.451"/>
+<msg timestamp="20240529 13:59:18.902" level="INFO">${total_amount_value} = 517.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.901" endtime="20240529 13:59:18.903"/>
 </kw>
 <kw name="Get File" library="OperatingSystem">
 <var>${email_body}</var>
 <arg>${TEXT_BODY_FILE}</arg>
 <doc>Returns the contents of a specified file.</doc>
-<msg timestamp="20240529 09:39:05.452" level="INFO" html="true">Getting file '&lt;a href="file://C:\Send Result Report Via Email\email_body.txt"&gt;C:\Send Result Report Via Email\email_body.txt&lt;/a&gt;'.</msg>
-<msg timestamp="20240529 09:39:05.452" level="INFO">${email_body} = Dear all,
+<msg timestamp="20240529 13:59:18.904" level="INFO" html="true">Getting file '&lt;a href="file://C:\Send Result Report Via Email\email_body.txt"&gt;C:\Send Result Report Via Email\email_body.txt&lt;/a&gt;'.</msg>
+<msg timestamp="20240529 13:59:18.905" level="INFO">${email_body} = Dear all,
 
 We are pleased to present you with the summary report of the product data gathering for the product who payment successfull. Below you will find the key information:
     1. Current data gat...</msg>
-<status status="PASS" starttime="20240529 09:39:05.451" endtime="20240529 09:39:05.453"/>
+<status status="PASS" starttime="20240529 13:59:18.903" endtime="20240529 13:59:18.906"/>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>${replacements}</var>
@@ -1073,8 +1112,8 @@ We are pleased to present you with the summary report of the product data gather
 <arg>payment_order=${payment_order_value}</arg>
 <arg>where_buy=${where_buy_value}</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20240529 09:39:05.455" level="INFO">${replacements} = {'total_quantity_purchased': 51, 'total_amount': 517.0, 'payment_order': '000002745', 'where_buy': '"Magento Website"'}</msg>
-<status status="PASS" starttime="20240529 09:39:05.453" endtime="20240529 09:39:05.456"/>
+<msg timestamp="20240529 13:59:18.909" level="INFO">${replacements} = {'total_quantity_purchased': 51, 'total_amount': 517.0, 'payment_order': '000002745', 'where_buy': '"Magento Website"'}</msg>
+<status status="PASS" starttime="20240529 13:59:18.907" endtime="20240529 13:59:18.909"/>
 </kw>
 <for flavor="IN">
 <var>${key}</var>
@@ -1087,8 +1126,8 @@ We are pleased to present you with the summary report of the product data gather
 <var>${value_str}</var>
 <arg>${value}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240529 09:39:05.457" level="INFO">${value_str} = 51</msg>
-<status status="PASS" starttime="20240529 09:39:05.457" endtime="20240529 09:39:05.458"/>
+<msg timestamp="20240529 13:59:18.913" level="INFO">${value_str} = 51</msg>
+<status status="PASS" starttime="20240529 13:59:18.912" endtime="20240529 13:59:18.913"/>
 </kw>
 <kw name="Replace String" library="String">
 <var>${email_body}</var>
@@ -1096,13 +1135,13 @@ We are pleased to present you with the summary report of the product data gather
 <arg>${key}</arg>
 <arg>${value_str}</arg>
 <doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
-<msg timestamp="20240529 09:39:05.459" level="INFO">${email_body} = Dear all,
+<msg timestamp="20240529 13:59:18.915" level="INFO">${email_body} = Dear all,
 
 We are pleased to present you with the summary report of the product data gathering for the product who payment successfull. Below you will find the key information:
     1. Current data gat...</msg>
-<status status="PASS" starttime="20240529 09:39:05.458" endtime="20240529 09:39:05.459"/>
+<status status="PASS" starttime="20240529 13:59:18.914" endtime="20240529 13:59:18.915"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.457" endtime="20240529 09:39:05.459"/>
+<status status="PASS" starttime="20240529 13:59:18.911" endtime="20240529 13:59:18.915"/>
 </iter>
 <iter>
 <var name="${key}">total_amount</var>
@@ -1111,8 +1150,8 @@ We are pleased to present you with the summary report of the product data gather
 <var>${value_str}</var>
 <arg>${value}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240529 09:39:05.460" level="INFO">${value_str} = 517.0</msg>
-<status status="PASS" starttime="20240529 09:39:05.460" endtime="20240529 09:39:05.460"/>
+<msg timestamp="20240529 13:59:18.917" level="INFO">${value_str} = 517.0</msg>
+<status status="PASS" starttime="20240529 13:59:18.916" endtime="20240529 13:59:18.917"/>
 </kw>
 <kw name="Replace String" library="String">
 <var>${email_body}</var>
@@ -1120,13 +1159,13 @@ We are pleased to present you with the summary report of the product data gather
 <arg>${key}</arg>
 <arg>${value_str}</arg>
 <doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
-<msg timestamp="20240529 09:39:05.461" level="INFO">${email_body} = Dear all,
+<msg timestamp="20240529 13:59:18.919" level="INFO">${email_body} = Dear all,
 
 We are pleased to present you with the summary report of the product data gathering for the product who payment successfull. Below you will find the key information:
     1. Current data gat...</msg>
-<status status="PASS" starttime="20240529 09:39:05.461" endtime="20240529 09:39:05.462"/>
+<status status="PASS" starttime="20240529 13:59:18.917" endtime="20240529 13:59:18.919"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.459" endtime="20240529 09:39:05.462"/>
+<status status="PASS" starttime="20240529 13:59:18.915" endtime="20240529 13:59:18.919"/>
 </iter>
 <iter>
 <var name="${key}">payment_order</var>
@@ -1135,8 +1174,8 @@ We are pleased to present you with the summary report of the product data gather
 <var>${value_str}</var>
 <arg>${value}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240529 09:39:05.463" level="INFO">${value_str} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:05.462" endtime="20240529 09:39:05.463"/>
+<msg timestamp="20240529 13:59:18.921" level="INFO">${value_str} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:18.920" endtime="20240529 13:59:18.922"/>
 </kw>
 <kw name="Replace String" library="String">
 <var>${email_body}</var>
@@ -1144,13 +1183,13 @@ We are pleased to present you with the summary report of the product data gather
 <arg>${key}</arg>
 <arg>${value_str}</arg>
 <doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
-<msg timestamp="20240529 09:39:05.464" level="INFO">${email_body} = Dear all,
+<msg timestamp="20240529 13:59:18.923" level="INFO">${email_body} = Dear all,
 
 We are pleased to present you with the summary report of the product data gathering for the product who payment successfull. Below you will find the key information:
     1. Current data gat...</msg>
-<status status="PASS" starttime="20240529 09:39:05.463" endtime="20240529 09:39:05.464"/>
+<status status="PASS" starttime="20240529 13:59:18.922" endtime="20240529 13:59:18.923"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.462" endtime="20240529 09:39:05.464"/>
+<status status="PASS" starttime="20240529 13:59:18.920" endtime="20240529 13:59:18.923"/>
 </iter>
 <iter>
 <var name="${key}">where_buy</var>
@@ -1159,8 +1198,8 @@ We are pleased to present you with the summary report of the product data gather
 <var>${value_str}</var>
 <arg>${value}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240529 09:39:05.465" level="INFO">${value_str} = "Magento Website"</msg>
-<status status="PASS" starttime="20240529 09:39:05.464" endtime="20240529 09:39:05.465"/>
+<msg timestamp="20240529 13:59:18.925" level="INFO">${value_str} = "Magento Website"</msg>
+<status status="PASS" starttime="20240529 13:59:18.924" endtime="20240529 13:59:18.926"/>
 </kw>
 <kw name="Replace String" library="String">
 <var>${email_body}</var>
@@ -1168,43 +1207,43 @@ We are pleased to present you with the summary report of the product data gather
 <arg>${key}</arg>
 <arg>${value_str}</arg>
 <doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
-<msg timestamp="20240529 09:39:05.466" level="INFO">${email_body} = Dear all,
+<msg timestamp="20240529 13:59:18.927" level="INFO">${email_body} = Dear all,
 
 We are pleased to present you with the summary report of the product data gathering for the product who payment successfull. Below you will find the key information:
     1. Current data gat...</msg>
-<status status="PASS" starttime="20240529 09:39:05.465" endtime="20240529 09:39:05.466"/>
+<status status="PASS" starttime="20240529 13:59:18.926" endtime="20240529 13:59:18.927"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:05.464" endtime="20240529 09:39:05.466"/>
+<status status="PASS" starttime="20240529 13:59:18.923" endtime="20240529 13:59:18.928"/>
 </iter>
-<status status="PASS" starttime="20240529 09:39:05.456" endtime="20240529 09:39:05.467"/>
+<status status="PASS" starttime="20240529 13:59:18.910" endtime="20240529 13:59:18.928"/>
 </for>
 <kw name="Create File" library="OperatingSystem">
 <arg>${TEXT_BODY_FILE}</arg>
 <arg>${email_body}</arg>
 <doc>Creates a file with the given content and encoding.</doc>
-<msg timestamp="20240529 09:39:05.469" level="INFO" html="true">Created file '&lt;a href="file://C:\Send Result Report Via Email\email_body.txt"&gt;C:\Send Result Report Via Email\email_body.txt&lt;/a&gt;'.</msg>
-<status status="PASS" starttime="20240529 09:39:05.467" endtime="20240529 09:39:05.469"/>
+<msg timestamp="20240529 13:59:18.934" level="INFO" html="true">Created file '&lt;a href="file://C:\Send Result Report Via Email\email_body.txt"&gt;C:\Send Result Report Via Email\email_body.txt&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20240529 13:59:18.928" endtime="20240529 13:59:18.934"/>
 </kw>
 <kw name="Send Message" library="RPA.Email.ImapSmtp">
 <arg>sender=${username}</arg>
-<arg>recipients=${recipients_value}</arg>
+<arg>recipients=${list_recipient}</arg>
 <arg>subject=Send Result Report Via Email By Infomation Of Product Magento</arg>
 <arg>body=${email_body}</arg>
 <arg>attachments=${url_file_excel_value}</arg>
 <doc>Send SMTP email</doc>
-<msg timestamp="20240529 09:39:05.473" level="WARN">MAIN: application SUB: vnd.openxmlformats-officedocument.spreadsheetml.sheet</msg>
-<status status="PASS" starttime="20240529 09:39:05.470" endtime="20240529 09:39:07.078"/>
+<msg timestamp="20240529 13:59:18.939" level="WARN">MAIN: application SUB: vnd.openxmlformats-officedocument.spreadsheetml.sheet</msg>
+<status status="PASS" starttime="20240529 13:59:18.935" endtime="20240529 13:59:20.502"/>
 </kw>
 <kw name="Get File" library="OperatingSystem">
 <var>${email_body}</var>
 <arg>${TEXT_BODY_FILE}</arg>
 <doc>Returns the contents of a specified file.</doc>
-<msg timestamp="20240529 09:39:07.079" level="INFO" html="true">Getting file '&lt;a href="file://C:\Send Result Report Via Email\email_body.txt"&gt;C:\Send Result Report Via Email\email_body.txt&lt;/a&gt;'.</msg>
-<msg timestamp="20240529 09:39:07.080" level="INFO">${email_body} = Dear all,
+<msg timestamp="20240529 13:59:20.504" level="INFO" html="true">Getting file '&lt;a href="file://C:\Send Result Report Via Email\email_body.txt"&gt;C:\Send Result Report Via Email\email_body.txt&lt;/a&gt;'.</msg>
+<msg timestamp="20240529 13:59:20.504" level="INFO">${email_body} = Dear all,
 
 We are pleased to present you with the summary report of the product data gathering for the product who payment successfull. Below you will find the key information:
     1. Current data gat...</msg>
-<status status="PASS" starttime="20240529 09:39:07.079" endtime="20240529 09:39:07.080"/>
+<status status="PASS" starttime="20240529 13:59:20.503" endtime="20240529 13:59:20.505"/>
 </kw>
 <kw name="Create Dictionary" library="BuiltIn">
 <var>${replacements}</var>
@@ -1213,8 +1252,8 @@ We are pleased to present you with the summary report of the product data gather
 <arg>${payment_order_value}=payment_order</arg>
 <arg>${where_buy_value}=where_buy</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20240529 09:39:07.083" level="INFO">${replacements} = {51: 'total_quantity_purchased', 517.0: 'total_amount', '000002745': 'payment_order', '"Magento Website"': 'where_buy'}</msg>
-<status status="PASS" starttime="20240529 09:39:07.082" endtime="20240529 09:39:07.083"/>
+<msg timestamp="20240529 13:59:20.507" level="INFO">${replacements} = {51: 'total_quantity_purchased', 517.0: 'total_amount', '000002745': 'payment_order', '"Magento Website"': 'where_buy'}</msg>
+<status status="PASS" starttime="20240529 13:59:20.506" endtime="20240529 13:59:20.507"/>
 </kw>
 <for flavor="IN">
 <var>${key}</var>
@@ -1227,15 +1266,15 @@ We are pleased to present you with the summary report of the product data gather
 <var>${key_str}</var>
 <arg>${key}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240529 09:39:07.085" level="INFO">${key_str} = 51</msg>
-<status status="PASS" starttime="20240529 09:39:07.084" endtime="20240529 09:39:07.085"/>
+<msg timestamp="20240529 13:59:20.510" level="INFO">${key_str} = 51</msg>
+<status status="PASS" starttime="20240529 13:59:20.509" endtime="20240529 13:59:20.510"/>
 </kw>
 <kw name="Convert To String" library="BuiltIn">
 <var>${value_str}</var>
 <arg>${value}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240529 09:39:07.086" level="INFO">${value_str} = total_quantity_purchased</msg>
-<status status="PASS" starttime="20240529 09:39:07.085" endtime="20240529 09:39:07.086"/>
+<msg timestamp="20240529 13:59:20.511" level="INFO">${value_str} = total_quantity_purchased</msg>
+<status status="PASS" starttime="20240529 13:59:20.511" endtime="20240529 13:59:20.511"/>
 </kw>
 <kw name="Replace String" library="String">
 <var>${email_body}</var>
@@ -1243,13 +1282,13 @@ We are pleased to present you with the summary report of the product data gather
 <arg>${key_str}</arg>
 <arg>${value_str}</arg>
 <doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
-<msg timestamp="20240529 09:39:07.087" level="INFO">${email_body} = Dear all,
+<msg timestamp="20240529 13:59:20.512" level="INFO">${email_body} = Dear all,
 
 We are pleased to present you with the summary report of the product data gathering for the product who payment successfull. Below you will find the key information:
     1. Current data gat...</msg>
-<status status="PASS" starttime="20240529 09:39:07.086" endtime="20240529 09:39:07.087"/>
+<status status="PASS" starttime="20240529 13:59:20.512" endtime="20240529 13:59:20.513"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:07.084" endtime="20240529 09:39:07.087"/>
+<status status="PASS" starttime="20240529 13:59:20.509" endtime="20240529 13:59:20.513"/>
 </iter>
 <iter>
 <var name="${key}">517.0</var>
@@ -1258,15 +1297,15 @@ We are pleased to present you with the summary report of the product data gather
 <var>${key_str}</var>
 <arg>${key}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240529 09:39:07.088" level="INFO">${key_str} = 517.0</msg>
-<status status="PASS" starttime="20240529 09:39:07.088" endtime="20240529 09:39:07.088"/>
+<msg timestamp="20240529 13:59:20.515" level="INFO">${key_str} = 517.0</msg>
+<status status="PASS" starttime="20240529 13:59:20.514" endtime="20240529 13:59:20.515"/>
 </kw>
 <kw name="Convert To String" library="BuiltIn">
 <var>${value_str}</var>
 <arg>${value}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240529 09:39:07.089" level="INFO">${value_str} = total_amount</msg>
-<status status="PASS" starttime="20240529 09:39:07.088" endtime="20240529 09:39:07.089"/>
+<msg timestamp="20240529 13:59:20.516" level="INFO">${value_str} = total_amount</msg>
+<status status="PASS" starttime="20240529 13:59:20.515" endtime="20240529 13:59:20.517"/>
 </kw>
 <kw name="Replace String" library="String">
 <var>${email_body}</var>
@@ -1274,13 +1313,13 @@ We are pleased to present you with the summary report of the product data gather
 <arg>${key_str}</arg>
 <arg>${value_str}</arg>
 <doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
-<msg timestamp="20240529 09:39:07.090" level="INFO">${email_body} = Dear all,
+<msg timestamp="20240529 13:59:20.518" level="INFO">${email_body} = Dear all,
 
 We are pleased to present you with the summary report of the product data gathering for the product who payment successfull. Below you will find the key information:
     1. Current data gat...</msg>
-<status status="PASS" starttime="20240529 09:39:07.089" endtime="20240529 09:39:07.090"/>
+<status status="PASS" starttime="20240529 13:59:20.517" endtime="20240529 13:59:20.518"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:07.087" endtime="20240529 09:39:07.090"/>
+<status status="PASS" starttime="20240529 13:59:20.513" endtime="20240529 13:59:20.518"/>
 </iter>
 <iter>
 <var name="${key}">000002745</var>
@@ -1289,15 +1328,15 @@ We are pleased to present you with the summary report of the product data gather
 <var>${key_str}</var>
 <arg>${key}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240529 09:39:07.091" level="INFO">${key_str} = 000002745</msg>
-<status status="PASS" starttime="20240529 09:39:07.091" endtime="20240529 09:39:07.091"/>
+<msg timestamp="20240529 13:59:20.519" level="INFO">${key_str} = 000002745</msg>
+<status status="PASS" starttime="20240529 13:59:20.519" endtime="20240529 13:59:20.519"/>
 </kw>
 <kw name="Convert To String" library="BuiltIn">
 <var>${value_str}</var>
 <arg>${value}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240529 09:39:07.092" level="INFO">${value_str} = payment_order</msg>
-<status status="PASS" starttime="20240529 09:39:07.092" endtime="20240529 09:39:07.092"/>
+<msg timestamp="20240529 13:59:20.520" level="INFO">${value_str} = payment_order</msg>
+<status status="PASS" starttime="20240529 13:59:20.520" endtime="20240529 13:59:20.521"/>
 </kw>
 <kw name="Replace String" library="String">
 <var>${email_body}</var>
@@ -1305,13 +1344,13 @@ We are pleased to present you with the summary report of the product data gather
 <arg>${key_str}</arg>
 <arg>${value_str}</arg>
 <doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
-<msg timestamp="20240529 09:39:07.094" level="INFO">${email_body} = Dear all,
+<msg timestamp="20240529 13:59:20.522" level="INFO">${email_body} = Dear all,
 
 We are pleased to present you with the summary report of the product data gathering for the product who payment successfull. Below you will find the key information:
     1. Current data gat...</msg>
-<status status="PASS" starttime="20240529 09:39:07.093" endtime="20240529 09:39:07.094"/>
+<status status="PASS" starttime="20240529 13:59:20.521" endtime="20240529 13:59:20.522"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:07.090" endtime="20240529 09:39:07.094"/>
+<status status="PASS" starttime="20240529 13:59:20.519" endtime="20240529 13:59:20.523"/>
 </iter>
 <iter>
 <var name="${key}">"Magento Website"</var>
@@ -1320,15 +1359,15 @@ We are pleased to present you with the summary report of the product data gather
 <var>${key_str}</var>
 <arg>${key}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240529 09:39:07.095" level="INFO">${key_str} = "Magento Website"</msg>
-<status status="PASS" starttime="20240529 09:39:07.095" endtime="20240529 09:39:07.095"/>
+<msg timestamp="20240529 13:59:20.524" level="INFO">${key_str} = "Magento Website"</msg>
+<status status="PASS" starttime="20240529 13:59:20.524" endtime="20240529 13:59:20.524"/>
 </kw>
 <kw name="Convert To String" library="BuiltIn">
 <var>${value_str}</var>
 <arg>${value}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240529 09:39:07.096" level="INFO">${value_str} = where_buy</msg>
-<status status="PASS" starttime="20240529 09:39:07.096" endtime="20240529 09:39:07.096"/>
+<msg timestamp="20240529 13:59:20.526" level="INFO">${value_str} = where_buy</msg>
+<status status="PASS" starttime="20240529 13:59:20.525" endtime="20240529 13:59:20.526"/>
 </kw>
 <kw name="Replace String" library="String">
 <var>${email_body}</var>
@@ -1336,27 +1375,28 @@ We are pleased to present you with the summary report of the product data gather
 <arg>${key_str}</arg>
 <arg>${value_str}</arg>
 <doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
-<msg timestamp="20240529 09:39:07.097" level="INFO">${email_body} = Dear all,
+<msg timestamp="20240529 13:59:20.527" level="INFO">${email_body} = Dear all,
 
 We are pleased to present you with the summary report of the product data gathering for the product who payment successfull. Below you will find the key information:
     1. Current data gat...</msg>
-<status status="PASS" starttime="20240529 09:39:07.096" endtime="20240529 09:39:07.097"/>
+<status status="PASS" starttime="20240529 13:59:20.526" endtime="20240529 13:59:20.527"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:07.094" endtime="20240529 09:39:07.097"/>
+<status status="PASS" starttime="20240529 13:59:20.523" endtime="20240529 13:59:20.528"/>
 </iter>
-<status status="PASS" starttime="20240529 09:39:07.083" endtime="20240529 09:39:07.097"/>
+<status status="PASS" starttime="20240529 13:59:20.508" endtime="20240529 13:59:20.528"/>
 </for>
 <kw name="Create File" library="OperatingSystem">
 <arg>${TEXT_BODY_FILE}</arg>
 <arg>${email_body}</arg>
 <doc>Creates a file with the given content and encoding.</doc>
-<msg timestamp="20240529 09:39:07.100" level="INFO" html="true">Created file '&lt;a href="file://C:\Send Result Report Via Email\email_body.txt"&gt;C:\Send Result Report Via Email\email_body.txt&lt;/a&gt;'.</msg>
-<status status="PASS" starttime="20240529 09:39:07.098" endtime="20240529 09:39:07.101"/>
+<msg timestamp="20240529 13:59:20.530" level="INFO" html="true">Created file '&lt;a href="file://C:\Send Result Report Via Email\email_body.txt"&gt;C:\Send Result Report Via Email\email_body.txt&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20240529 13:59:20.528" endtime="20240529 13:59:20.530"/>
 </kw>
-<status status="PASS" starttime="20240529 09:39:01.693" endtime="20240529 09:39:07.101"/>
+<doc>Send Result Report Via Email To Recipients Address Email</doc>
+<status status="PASS" starttime="20240529 13:59:15.059" endtime="20240529 13:59:20.531"/>
 </test>
 <doc>Sending plain text email via gmail</doc>
-<status status="PASS" starttime="20240529 09:39:01.053" endtime="20240529 09:39:07.103"/>
+<status status="PASS" starttime="20240529 13:59:14.350" endtime="20240529 13:59:20.535"/>
 </suite>
 <statistics>
 <total>
@@ -1369,6 +1409,6 @@ We are pleased to present you with the summary report of the product data gather
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20240529 09:39:05.473" level="WARN">MAIN: application SUB: vnd.openxmlformats-officedocument.spreadsheetml.sheet</msg>
+<msg timestamp="20240529 13:59:18.939" level="WARN">MAIN: application SUB: vnd.openxmlformats-officedocument.spreadsheetml.sheet</msg>
 </errors>
 </robot>

@@ -2,9 +2,9 @@
     "recipients_email_address": {
         "name": "recipients_email_address",
         "description": "recipients email address ",
-        "type": "List",
+        "type": "String",
         "direction": "IN",
-        "value": ["thesonpham120499@gmail.com", "lailatobine@gmail.com"],
+        "value": "thesonpham120499@gmail.com, lailatobine@gmail.com",
         "required": true
     },
     "file_output": {

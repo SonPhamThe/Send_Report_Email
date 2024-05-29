@@ -26,12 +26,6 @@ arguments:
       required: true
       defaultValue: null
       description: List recipients email address to send
-  output:
-    - name: output_send_result
-      type: Boolean
-      required: true
-      defaultValue: null
-      description: Status send result report via email
 
 artifactsDir: output  
 

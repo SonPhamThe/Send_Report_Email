@@ -22,7 +22,7 @@ arguments:
       defaultValue: null
       description: File input information product purchased
     - name: recipients_email_address
-      type: List
+      type: String
       required: true
       defaultValue: null
       description: List recipients email address to send
@@ -33,7 +33,5 @@ PATH:
   - .
 PYTHONPATH:
   - .
-  - libraries
-
 ignoreFiles:
   - .gitignore

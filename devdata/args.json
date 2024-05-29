@@ -15,9 +15,9 @@
         "value": "C:\\Send Result Report Via Email\\data_magento (5).xlsx",
         "required": true
     },
-    "content_errors": {
-        "name": "content_errors",
-        "description": "content_errors ",
+    "email_body": {
+        "name": "email_body",
+        "description": "Body Of Email To Send",
         "type": "File",
         "direction": "IN",
         "value": "C:\\Send Result Report Via Email\\email_body.txt",

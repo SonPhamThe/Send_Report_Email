@@ -62,7 +62,7 @@ Send Email
     Set Global Variable    ${total_quantity_purchased_value}    ${quantity_product}
     Set Global Variable    ${total_amount_value}    ${price_product}
 
-    ${url_file_text}=    Get In Arg    content_errors
+    ${url_file_text}=    Get In Arg    email_body
     ${url_file_text_value}=    Set Variable    ${url_file_text}[value]
     ${email_body}=    Get File    ${url_file_text_value}
 

@@ -13,22 +13,17 @@ tasks:
       - tasks.robot
 arguments:
   input:
+    - name: file_info_product
+      type: File
+      required: True
+      defaultValue:
+      description: File Infomation Product
+  output:
     - name: file_output
       type: File
       required: True
       defaultValue:
       description: File output
-    - name: recipients_email_address
-      type: List
-      required: True
-      defaultValue:
-      description: List recipients email address
-  output:
-    - name: output_send_result
-      type: Boolean
-      required: True
-      defaultValue:
-      description: Status send result report via email
 
 condaConfigFile: conda.yaml
 environmentConfigs:

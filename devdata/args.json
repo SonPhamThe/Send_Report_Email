@@ -12,7 +12,15 @@
         "description": "file_output ",
         "type": "File",
         "direction": "OUT",
-        "value": "d:\\Magento_Website_Robot/data_magento.xlsx",
+        "value": "C:\\Send Result Report Via Email\\data_magento (5).xlsx",
+        "required": true
+    },
+    "content_errors": {
+        "name": "content_errors",
+        "description": "content_errors ",
+        "type": "File",
+        "direction": "IN",
+        "value": "C:\\Send Result Report Via Email\\email_body.txt",
         "required": true
     }
 }

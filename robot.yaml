@@ -26,6 +26,11 @@ arguments:
       required: true
       defaultValue: null
       description: List recipients email address to send
+    - name: content_errors
+      type: File
+      required: true
+      defaultValue: null
+      description: Content of Errors
 
 artifactsDir: output  
 

@@ -39,5 +39,6 @@ PATH:
   - .
 PYTHONPATH:
   - .
+  - libraries
 ignoreFiles:
   - .gitignore

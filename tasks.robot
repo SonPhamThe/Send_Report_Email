@@ -47,7 +47,7 @@ Send Email
         ${price}=    Get From Dictionary    ${excel}    Price
         ${order_number}=    Get From Dictionary    ${excel}    Order Number
         Set Global Variable    ${payment_order_value}    ${order_number}
-        ${price_value}=    Convert String To Money    ${price}
+        ${price_value}=    Convert String To Price    ${price}
         ${quantity_product}=    Evaluate    ${quantity_product} + ${quantity}
         ${price_product}=    Evaluate    ${price_product} + ${price_value}
     END
